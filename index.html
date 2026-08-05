@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forfait mobile sans engagement — La Poste Mobile</title>
+<meta name="description" content="Le forfait mobile au prix affiché, sans engagement, avec un conseiller dans votre bureau de poste. Souscription en 3 minutes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+/* =========================================================================
+   CHARTE GRAPHIQUE — GROUPE LA POSTE
+   Jaune La Poste  #FFCD00   couleur de marque, réservée aux surfaces d'appel
+   Bleu La Poste   #002E5D   couleur d'encre, titres et fonds sombres
+   Bleu vif        #0068B4   liens et états actifs
+   La police officielle du Groupe est "Poste Sans" (propriétaire, non libre
+   de droits). Manrope est utilisée ici comme substitut de même famille
+   (linéale humaniste). À remplacer par Poste Sans en production.
+   ========================================================================= */
+:root{
+  --jaune:#FFCD00;
+  --jaune-sombre:#E0B400;
+  --bleu:#002E5D;
+  --bleu-vif:#0068B4;
+  --encre:#14181F;
+  --gris:#F4F5F7;
+  --gris-bord:#E2E5EA;
+  --gris-texte:#5B6472;
+  --blanc:#FFFFFF;
+  --vert:#0B7D5A;
+  --rayon:14px;
+  --contenu:1120px;
+  --ombre:0 2px 4px rgba(0,46,93,.06), 0 12px 32px rgba(0,46,93,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important}
+}
+body{
+  margin:0;
+  font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  color:var(--encre);
+  background:var(--blanc);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{color:var(--bleu);line-height:1.15;margin:0;letter-spacing:-.02em}
+h1{font-size:clamp(2rem,4.6vw,3.35rem);font-weight:800}
+h2{font-size:clamp(1.5rem,3vw,2.25rem);font-weight:800}
+h3{font-size:1.125rem;font-weight:700;letter-spacing:-.01em}
+p{margin:0}
+a{color:var(--bleu-vif)}
+.wrap{max-width:var(--contenu);margin:0 auto;padding:0 24px}
+.eyebrow{
+  font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--bleu-vif);margin-bottom:14px;
+}
+
+/* ---------- Bandeau de mention pédagogique ---------- */
+.bandeau-tp{
+  background:var(--bleu);color:#C9D6E5;font-size:.78rem;text-align:center;
+  padding:7px 16px;letter-spacing:.01em;
+}
+.bandeau-tp strong{color:var(--jaune);font-weight:700}
+
+/* ---------- En-tête ---------- */
+.entete{
+  position:sticky;top:0;z-index:60;background:rgba(255,255,255,.94);
+  backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--gris-bord);
+}
+.entete-in{display:flex;align-items:center;gap:20px;height:70px}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
+.logo img{height:38px;width:auto;display:block}
+/* Substitut affiché tant que le logo officiel n'est pas déposé dans le dossier.
+   Remplacer par le fichier fourni par la direction de la communication. */
+.logo-substitut{
+  display:flex;align-items:center;justify-content:center;
+  width:44px;height:44px;border-radius:9px;background:var(--jaune);
+  font-weight:800;font-size:.62rem;line-height:1.05;color:var(--bleu);
+  text-align:center;letter-spacing:.01em;
+}
+.logo-mot{font-weight:800;color:var(--bleu);font-size:1.02rem;letter-spacing:-.02em}
+.logo-mot span{display:block;font-size:.66rem;font-weight:600;color:var(--gris-texte);letter-spacing:.16em;text-transform:uppercase}
+.entete nav{margin-left:auto;display:flex;align-items:center;gap:26px}
+.entete nav a{
+  color:var(--bleu);text-decoration:none;font-weight:600;font-size:.92rem;
+  padding:6px 0;border-bottom:2px solid transparent;
+}
+.entete nav a:hover{border-bottom-color:var(--jaune)}
+@media(max-width:860px){.entete nav .lien-nav{display:none}}
+
+/* ---------- Boutons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-family:inherit;font-weight:800;font-size:1rem;
+  padding:15px 28px;border-radius:10px;border:2px solid transparent;
+  cursor:pointer;text-decoration:none;transition:transform .12s ease,box-shadow .18s ease,background .18s ease;
+}
+.btn:focus-visible{outline:3px solid var(--bleu-vif);outline-offset:3px}
+.btn-jaune{background:var(--jaune);color:var(--bleu);box-shadow:0 4px 0 var(--jaune-sombre)}
+.btn-jaune:hover{background:#FFD727;transform:translateY(-1px);box-shadow:0 5px 0 var(--jaune-sombre)}
+.btn-jaune:active{transform:translateY(2px);box-shadow:0 2px 0 var(--jaune-sombre)}
+.btn-bleu{background:var(--bleu);color:#fff}
+.btn-bleu:hover{background:#003D78}
+.btn-ligne{background:transparent;color:var(--bleu);border-color:var(--gris-bord)}
+.btn-ligne:hover{border-color:var(--bleu)}
+.btn-sm{padding:10px 18px;font-size:.9rem;border-radius:8px}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;overflow:hidden;background:var(--blanc);padding:56px 0 64px}
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(760px 420px at 88% -8%, rgba(255,205,0,.30), transparent 62%),
+    radial-gradient(560px 380px at -6% 108%, rgba(0,104,180,.10), transparent 60%);
+}
+.hero-grille{position:relative;z-index:1;display:grid;grid-template-columns:1.02fr .98fr;gap:52px;align-items:start}
+@media(max-width:940px){.hero-grille{grid-template-columns:1fr;gap:36px}}
+.hero p.accroche{font-size:1.12rem;color:var(--gris-texte);margin-top:18px;max-width:34rem}
+.hero h1 mark{background:linear-gradient(180deg,transparent 58%,var(--jaune) 58%);color:inherit;padding:0 3px}
+
+.puces{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:11px}
+.puces li{display:flex;gap:11px;align-items:flex-start;font-weight:600;color:var(--bleu);font-size:.98rem}
+.coche{
+  flex:0 0 21px;height:21px;border-radius:50%;background:var(--bleu);color:var(--jaune);
+  display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:800;margin-top:2px;
+}
+
+/* ---------- Configurateur ---------- */
+.config{
+  background:var(--blanc);border:1px solid var(--gris-bord);border-radius:var(--rayon);
+  box-shadow:var(--ombre);padding:26px;position:relative;
+}
+.config-haut{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:20px}
+.config-haut h2{font-size:1.2rem}
+.badge{
+  background:var(--jaune);color:var(--bleu);font-size:.7rem;font-weight:800;
+  padding:5px 11px;border-radius:99px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;
+}
+.champ-titre{
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-size:.8rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--gris-texte);margin-bottom:12px;
+}
+.champ-titre b{color:var(--bleu);font-size:1.5rem;letter-spacing:-.02em}
+
+input[type=range]{
+  -webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:99px;
+  background:var(--gris-bord);outline:none;margin:0;cursor:pointer;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;width:28px;height:28px;border-radius:50%;
+  background:var(--jaune);border:4px solid var(--bleu);cursor:pointer;
+}
+input[type=range]::-moz-range-thumb{
+  width:28px;height:28px;border-radius:50%;background:var(--jaune);
+  border:4px solid var(--bleu);cursor:pointer;
+}
+input[type=range]:focus-visible{outline:3px solid var(--bleu-vif);outline-offset:4px}
+.graduations{display:flex;justify-content:space-between;margin-top:9px;font-size:.75rem;color:var(--gris-texte);font-weight:600}
+
+.bascule{display:grid;grid-template-columns:1fr 1fr;gap:8px;background:var(--gris);padding:5px;border-radius:11px;margin:22px 0 4px}
+.bascule button{
+  font-family:inherit;font-size:.86rem;font-weight:700;color:var(--gris-texte);
+  background:transparent;border:0;border-radius:8px;padding:11px 8px;cursor:pointer;transition:all .16s ease;
+}
+.bascule button[aria-pressed=true]{background:var(--blanc);color:var(--bleu);box-shadow:0 1px 3px rgba(0,46,93,.16)}
+.bascule button:focus-visible{outline:2px solid var(--bleu-vif);outline-offset:2px}
+
+.prix-bloc{border-top:1px solid var(--gris-bord);margin-top:22px;padding-top:20px}
+.prix{display:flex;align-items:flex-end;gap:10px}
+.prix .montant{font-size:3.5rem;font-weight:800;color:var(--bleu);line-height:.92;letter-spacing:-.045em}
+.prix .par{color:var(--gris-texte);font-weight:600;padding-bottom:7px}
+.prix-detail{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:7px;font-size:.85rem}
+.prix-detail li{display:flex;justify-content:space-between;color:var(--gris-texte)}
+.prix-detail li b{color:var(--bleu);font-weight:700}
+.prix-detail li.total{border-top:1px dashed var(--gris-bord);padding-top:9px;margin-top:3px;color:var(--bleu);font-weight:700}
+.config .btn{width:100%;margin-top:20px}
+.mention{font-size:.74rem;color:var(--gris-texte);margin-top:12px;text-align:center;line-height:1.5}
+
+/* ---------- Preuve ---------- */
+.preuve{background:var(--bleu);color:#fff;padding:46px 0}
+.preuve-grille{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;text-align:center}
+@media(max-width:760px){.preuve-grille{grid-template-columns:1fr;gap:26px}}
+.stat .nombre{font-size:2.9rem;font-weight:800;color:var(--jaune);line-height:1;letter-spacing:-.03em}
+.stat .libelle{color:#BDCBDC;font-size:.94rem;margin-top:9px}
+
+/* ---------- Sections ---------- */
+.section{padding:72px 0}
+.section-gris{background:var(--gris)}
+.entete-section{max-width:38rem;margin-bottom:40px}
+.entete-section p{color:var(--gris-texte);margin-top:14px;font-size:1.03rem}
+
+.cartes{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+@media(max-width:940px){.cartes{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.cartes{grid-template-columns:1fr}}
+.carte{
+  background:var(--blanc);border:1px solid var(--gris-bord);border-radius:var(--rayon);
+  padding:26px 22px;transition:transform .18s ease,box-shadow .18s ease;
+}
+.carte:hover{transform:translateY(-3px);box-shadow:var(--ombre)}
+.pastille{
+  width:46px;height:46px;border-radius:12px;background:var(--jaune);
+  display:flex;align-items:center;justify-content:center;margin-bottom:16px;
+}
+.pastille svg{width:23px;height:23px;stroke:var(--bleu);fill:none;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+.carte p{color:var(--gris-texte);font-size:.93rem;margin-top:9px}
+
+/* ---------- Réseau ---------- */
+.reseau{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+@media(max-width:860px){.reseau{grid-template-columns:1fr;gap:32px}}
+.carte-guichet{
+  background:var(--bleu);border-radius:var(--rayon);padding:34px;color:#fff;position:relative;overflow:hidden;
+}
+.carte-guichet::after{
+  content:"";position:absolute;right:-58px;bottom:-58px;width:190px;height:190px;
+  border-radius:50%;background:rgba(255,205,0,.16);
+}
+.carte-guichet h3{color:var(--jaune);font-size:1.28rem}
+.carte-guichet p{color:#C4D2E3;margin-top:13px;position:relative;z-index:1}
+.carte-guichet .btn{margin-top:22px;position:relative;z-index:1}
+
+/* ---------- FAQ ---------- */
+.faq{max-width:760px;margin:0 auto}
+.q{border-bottom:1px solid var(--gris-bord)}
+.q button{
+  width:100%;display:flex;justify-content:space-between;align-items:center;gap:18px;
+  background:none;border:0;padding:20px 2px;cursor:pointer;text-align:left;
+  font-family:inherit;font-size:1.02rem;font-weight:700;color:var(--bleu);
+}
+.q button:focus-visible{outline:2px solid var(--bleu-vif);outline-offset:2px}
+.q .signe{
+  flex:0 0 26px;height:26px;border-radius:50%;background:var(--gris);color:var(--bleu);
+  display:flex;align-items:center;justify-content:center;font-weight:800;transition:transform .2s ease,background .2s ease;
+}
+.q button[aria-expanded=true] .signe{background:var(--jaune);transform:rotate(45deg)}
+.q .reponse{max-height:0;overflow:hidden;transition:max-height .28s ease}
+.q .reponse p{padding:0 2px 20px;color:var(--gris-texte);font-size:.96rem}
+
+/* ---------- Formulaire ---------- */
+.form-grille{display:grid;grid-template-columns:.9fr 1.1fr;gap:52px;align-items:start}
+@media(max-width:860px){.form-grille{grid-template-columns:1fr;gap:32px}}
+.formulaire{background:var(--blanc);border:1px solid var(--gris-bord);border-radius:var(--rayon);padding:28px;box-shadow:var(--ombre)}
+.ligne{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:520px){.ligne{grid-template-columns:1fr}}
+.champ{margin-bottom:16px}
+.champ label{display:block;font-size:.82rem;font-weight:700;color:var(--bleu);margin-bottom:7px}
+.champ input{
+  width:100%;padding:13px 14px;border:1.5px solid var(--gris-bord);border-radius:9px;
+  font-family:inherit;font-size:.97rem;color:var(--encre);background:var(--blanc);transition:border-color .15s ease;
+}
+.champ input:focus{outline:none;border-color:var(--bleu-vif);box-shadow:0 0 0 3px rgba(0,104,180,.13)}
+.champ input[aria-invalid=true]{border-color:#C0392B}
+.erreur{display:none;color:#C0392B;font-size:.8rem;font-weight:600;margin-top:6px}
+.champ.invalide .erreur{display:block}
+.recap{
+  background:var(--gris);border-radius:10px;padding:15px 17px;margin-bottom:20px;
+  display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
+}
+.recap span{font-size:.85rem;color:var(--gris-texte);font-weight:600}
+.recap b{color:var(--bleu);font-size:1.05rem}
+.succes{
+  display:none;background:#E9F6F1;border:1.5px solid #B5E0D0;border-radius:10px;
+  padding:18px;color:var(--vert);font-weight:700;font-size:.95rem;
+}
+.succes.visible{display:block}
+
+/* ---------- Pied de page ---------- */
+.pied{background:var(--bleu);color:#9FB3C9;padding:44px 0 30px;font-size:.87rem}
+.pied-haut{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;align-items:flex-start}
+.pied a{color:#C4D2E3;text-decoration:none;display:block;padding:3px 0}
+.pied a:hover{color:var(--jaune)}
+.pied h4{color:#fff;font-size:.82rem;text-transform:uppercase;letter-spacing:.1em;margin:0 0 12px}
+.pied-bas{border-top:1px solid rgba(255,255,255,.13);margin-top:30px;padding-top:20px;font-size:.78rem;line-height:1.7}
+
+/* ---------- Barre mobile ---------- */
+.barre-mobile{
+  position:fixed;left:0;right:0;bottom:0;z-index:70;display:none;
+  background:var(--blanc);border-top:1px solid var(--gris-bord);
+  padding:11px 16px;box-shadow:0 -4px 20px rgba(0,46,93,.12);
+  align-items:center;justify-content:space-between;gap:14px;
+}
+.barre-mobile .p{font-weight:800;color:var(--bleu);font-size:1.15rem;line-height:1.1}
+.barre-mobile .p small{display:block;font-size:.7rem;font-weight:600;color:var(--gris-texte)}
+@media(max-width:760px){.barre-mobile{display:flex}body{padding-bottom:76px}}
+
+/* ---------- Console GA4 ---------- */
+.ga-ouvrir{
+  position:fixed;right:18px;bottom:18px;z-index:80;
+  background:var(--bleu);color:var(--jaune);border:0;border-radius:99px;
+  padding:11px 17px;font-family:inherit;font-size:.8rem;font-weight:800;cursor:pointer;
+  box-shadow:0 6px 20px rgba(0,46,93,.3);
+}
+@media(max-width:760px){.ga-ouvrir{bottom:84px}}
+.ga-panneau{
+  position:fixed;right:18px;bottom:70px;z-index:81;width:min(360px,calc(100vw - 36px));
+  background:#0B1220;border:1px solid #1F2C42;border-radius:12px;
+  box-shadow:0 20px 50px rgba(0,0,0,.4);display:none;overflow:hidden;
+}
+@media(max-width:760px){.ga-panneau{bottom:136px}}
+.ga-panneau.visible{display:block}
+.ga-tete{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:13px 15px;border-bottom:1px solid #1F2C42;
+}
+.ga-tete strong{color:var(--jaune);font-size:.82rem;letter-spacing:.03em}
+.ga-tete button{background:none;border:0;color:#7B8CA6;font-size:1.15rem;cursor:pointer;line-height:1;padding:0 3px}
+.ga-corps{max-height:280px;overflow-y:auto;padding:11px 15px 15px;font-size:.76rem}
+.ga-vide{color:#5F718C;font-style:italic}
+.ga-ligne{border-bottom:1px solid #16202F;padding:8px 0;color:#C7D4E6;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ga-ligne b{color:#5BC8A0;font-weight:600}
+.ga-ligne span{color:#6E809B;display:block;font-size:.72rem;margin-top:2px}
+
+/* ---------- Révélation au défilement ---------- */
+/* Le contenu est visible par defaut. L'animation n'est activee que si le
+   JavaScript s'execute correctement (classe .js posee sur <html>). */
+.reveal{opacity:1;transform:none}
+.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.js .reveal.vu{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none}}
+</style>
+<script>document.documentElement.className+=' js';</script>
+</head>
+<body>
+
+<div class="bandeau-tp">
+  Maquette réalisée dans le cadre d'un <strong>TP acquisition</strong> — offres et tarifs fictifs, sans valeur contractuelle.
+</div>
+
+<!-- ====================== EN-TÊTE ====================== -->
+<header class="entete">
+  <div class="wrap entete-in">
+    <a class="logo" href="#haut" aria-label="La Poste Mobile, retour en haut de page">
+      <!-- Déposer le fichier officiel sous ce nom pour remplacer le substitut ci-dessous -->
+      <img src="image/pi.png" alt="La Poste Mobile"
+           onerror="this.remove();document.getElementById('logoSub').style.display='flex'">
+      <span class="logo-substitut" id="logoSub" style="display:none">LA<br>POSTE</span>
+      <span class="logo-mot" id="logoMot">Mobile<span>Groupe La Poste</span></span>
+    </a>
+    <nav>
+      <a class="lien-nav" href="#offre">L'offre</a>
+      <a class="lien-nav" href="#reseau">En bureau de poste</a>
+      <a class="lien-nav" href="#questions">Questions</a>
+      <a class="btn btn-jaune btn-sm" href="#souscrire" data-cta="entete">Souscrire</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ====================== HERO ====================== -->
+<section class="hero" id="haut">
+  <div class="wrap hero-grille">
+
+    <div>
+      <p class="eyebrow">Forfait mobile sans engagement</p>
+      <h1>Le prix affiché est <mark>le prix payé</mark>.</h1>
+      <p class="accroche">
+        Pas de tarif qui double au bout d'un an, pas d'option activée sans vous.
+        Et si vous préférez en parler à quelqu'un, un conseiller vous attend dans votre bureau de poste.
+      </p>
+
+      <ul class="puces">
+        <li><span class="coche" aria-hidden="true">✓</span> Réseau 4G/5G couvrant 99 % de la population</li>
+        <li><span class="coche" aria-hidden="true">✓</span> Résiliable à tout moment, en trois clics</li>
+        <li><span class="coche" aria-hidden="true">✓</span> Assistance en bureau de poste, sans rendez-vous</li>
+      </ul>
+    </div>
+
+    <!-- Configurateur : élément interactif principal de la page -->
+    <div class="config" id="offre">
+      <div class="config-haut">
+        <h2>Composez votre forfait</h2>
+        <span class="badge">Sans engagement</span>
+      </div>
+
+      <div class="champ-titre">
+        <label for="curseur">Data incluse</label>
+        <b id="valeurData">100 Go</b>
+      </div>
+      <input type="range" id="curseur" min="0" max="3" step="1" value="2"
+             aria-describedby="aideData" list="paliers">
+      <datalist id="paliers"><option value="0"><option value="1"><option value="2"><option value="3"></datalist>
+      <div class="graduations" aria-hidden="true">
+        <span>5 Go</span><span>20 Go</span><span>100 Go</span><span>200 Go</span>
+      </div>
+      <p id="aideData" class="mention" style="text-align:left;margin-top:10px">
+        Au-delà, le débit est réduit. Vous n'êtes jamais facturé de hors-forfait sans accord.
+      </p>
+
+      <div class="bascule" role="group" aria-label="Durée d'engagement">
+        <button type="button" id="btnLibre" aria-pressed="true">Sans engagement</button>
+        <button type="button" id="btnEngage" aria-pressed="false">12 mois &nbsp;−2 €</button>
+      </div>
+
+      <div class="prix-bloc">
+        <div class="prix">
+          <span class="montant" id="montant">12,99 €</span>
+          <span class="par">/ mois</span>
+        </div>
+        <ul class="prix-detail">
+          <li><span>Forfait <b id="libelleForfait">100 Go</b></span> <b id="ligneForfait">12,99 €</b></li>
+          <li><span>Appels, SMS et MMS illimités</span> <b>Inclus</b></li>
+          <li><span>Frais de mise en service</span> <b>0 €</b></li>
+          <li class="total"><span>Total mensuel, tout compris</span> <b id="ligneTotal">12,99 €</b></li>
+        </ul>
+        <a class="btn btn-jaune" href="#souscrire" id="ctaPrincipal" data-cta="configurateur">
+          Souscrire ce forfait
+        </a>
+        <p class="mention">Carte SIM expédiée sous 48 h · Conservez votre numéro gratuitement</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====================== PREUVE ====================== -->
+<section class="preuve">
+  <div class="wrap preuve-grille">
+    <div class="stat reveal">
+      <div class="nombre" data-compteur="17000" data-suffixe="">0</div>
+      <div class="libelle">bureaux de poste pour vous accompagner</div>
+    </div>
+    <div class="stat reveal">
+      <div class="nombre" data-compteur="99" data-suffixe=" %">0</div>
+      <div class="libelle">de la population couverte en 4G</div>
+    </div>
+    <div class="stat reveal">
+      <div class="nombre" data-compteur="1" data-decimal="true" data-prefixe="" data-suffixe=",7 M">0</div>
+      <div class="libelle">de clients nous font déjà confiance</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== POURQUOI ====================== -->
+<section class="section" id="pourquoi">
+  <div class="wrap">
+    <div class="entete-section reveal">
+      <p class="eyebrow">Pourquoi nous choisir</p>
+      <h2>Un opérateur qui a pignon sur rue</h2>
+      <p>Là où les opérateurs en ligne vous renvoient vers un formulaire, nous avons un guichet dans votre commune.</p>
+    </div>
+
+    <div class="cartes">
+      <div class="carte reveal">
+        <div class="pastille" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>
+        </div>
+        <h3>Un conseiller près de chez vous</h3>
+        <p>Un problème de facture ou de SIM ? Poussez la porte de votre bureau de poste, sans rendez-vous.</p>
+      </div>
+      <div class="carte reveal">
+        <div class="pastille" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <h3>Un prix qui ne bouge pas</h3>
+        <p>Le tarif de votre première facture est celui de la trentième. Aucune hausse au bout de douze mois.</p>
+      </div>
+      <div class="carte reveal">
+        <div class="pastille" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>Vos données restent en France</h3>
+        <p>Hébergement et service client en France, sous la responsabilité d'un groupe à capitaux publics.</p>
+      </div>
+      <div class="carte reveal">
+        <div class="pastille" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16v12H5.2L4 18.5V4z"/><path d="M8 9h8M8 12.5h5"/></svg>
+        </div>
+        <h3>Une assistance qui répond</h3>
+        <p>Par téléphone, en boutique ou par messagerie. Sans passer douze minutes dans un menu vocal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== RÉSEAU ====================== -->
+<section class="section section-gris" id="reseau">
+  <div class="wrap reseau">
+    <div class="reveal">
+      <p class="eyebrow">Le réseau physique</p>
+      <h2>Souscrire en ligne, être aidé en vrai</h2>
+      <p style="color:var(--gris-texte);margin-top:16px;font-size:1.03rem">
+        Vous démarrez ici, en trois minutes. Et si quelque chose coince — un transfert de numéro,
+        une facture à comprendre, un téléphone à configurer — vous n'êtes pas seul face à un chat automatique.
+      </p>
+      <ul class="puces" style="margin-top:24px">
+        <li><span class="coche" aria-hidden="true">✓</span> Activation de la ligne au guichet si vous le souhaitez</li>
+        <li><span class="coche" aria-hidden="true">✓</span> Récupération de la carte SIM en bureau, sans attendre le courrier</li>
+        <li><span class="coche" aria-hidden="true">✓</span> Aide au transfert de vos contacts et de vos données</li>
+      </ul>
+    </div>
+
+    <div class="carte-guichet reveal">
+      <h3>Trouver le bureau le plus proche</h3>
+      <p>Indiquez votre code postal : nous vous montrons les bureaux qui proposent le service mobile et leurs horaires.</p>
+      <div style="display:flex;gap:10px;margin-top:22px;position:relative;z-index:1;flex-wrap:wrap">
+        <label for="cp" style="position:absolute;left:-9999px">Code postal</label>
+        <input id="cp" type="text" inputmode="numeric" maxlength="5" placeholder="Code postal"
+               style="flex:1;min-width:140px;padding:14px;border:0;border-radius:9px;font-family:inherit;font-size:1rem">
+        <button class="btn btn-jaune" type="button" id="btnCp">Rechercher</button>
+      </div>
+      <p id="resultatCp" style="margin-top:14px;font-weight:700;color:var(--jaune);position:relative;z-index:1"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== FAQ ====================== -->
+<section class="section" id="questions">
+  <div class="wrap">
+    <div class="entete-section reveal" style="margin-left:auto;margin-right:auto;text-align:center">
+      <p class="eyebrow">Questions fréquentes</p>
+      <h2>Ce que les clients demandent avant de souscrire</h2>
+    </div>
+
+    <div class="faq">
+      <div class="q">
+        <button type="button" aria-expanded="false">Puis-je garder mon numéro ?<span class="signe" aria-hidden="true">+</span></button>
+        <div class="reponse"><p>Oui, et c'est gratuit. Il vous faut votre code RIO, obtenu en appelant le 3179 depuis votre ligne actuelle. Nous nous occupons du reste, et votre ancienne ligne est résiliée automatiquement.</p></div>
+      </div>
+      <div class="q">
+        <button type="button" aria-expanded="false">Le prix va-t-il augmenter après un an ?<span class="signe" aria-hidden="true">+</span></button>
+        <div class="reponse"><p>Non. Le tarif affiché est le tarif définitif. Aucune hausse automatique n'est prévue au terme d'une période promotionnelle, parce qu'il n'y a pas de période promotionnelle.</p></div>
+      </div>
+      <div class="q">
+        <button type="button" aria-expanded="false">Que se passe-t-il si je dépasse mon enveloppe data ?<span class="signe" aria-hidden="true">+</span></button>
+        <div class="reponse"><p>Le débit est réduit jusqu'à la fin du mois, mais vous n'êtes jamais facturé sans l'avoir accepté. Vous recevez une alerte à 80 % de votre consommation.</p></div>
+      </div>
+      <div class="q">
+        <button type="button" aria-expanded="false">Sous combien de temps ma ligne est-elle active ?<span class="signe" aria-hidden="true">+</span></button>
+        <div class="reponse"><p>La carte SIM part sous 48 heures ouvrées. En la retirant directement en bureau de poste, la ligne peut être active le jour même.</p></div>
+      </div>
+      <div class="q">
+        <button type="button" aria-expanded="false">Comment résilier ?<span class="signe" aria-hidden="true">+</span></button>
+        <div class="reponse"><p>Depuis votre espace client, en trois clics, sans justificatif ni frais. La résiliation prend effet à la fin du mois en cours.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== SOUSCRIPTION ====================== -->
+<section class="section section-gris" id="souscrire">
+  <div class="wrap form-grille">
+    <div class="reveal">
+      <p class="eyebrow">Dernière étape</p>
+      <h2>Trois minutes, et c'est réglé</h2>
+      <p style="color:var(--gris-texte);margin-top:16px;font-size:1.03rem">
+        Nous vous demandons le strict nécessaire pour préparer votre ligne.
+        Aucune pièce d'identité n'est requise à ce stade.
+      </p>
+      <ul class="puces" style="margin-top:24px">
+        <li><span class="coche" aria-hidden="true">1</span> Vos coordonnées</li>
+        <li><span class="coche" aria-hidden="true">2</span> Le choix de votre forfait, déjà rempli</li>
+        <li><span class="coche" aria-hidden="true">3</span> Confirmation par courriel</li>
+      </ul>
+    </div>
+
+    <div class="formulaire">
+      <div class="recap">
+        <span>Votre sélection</span>
+        <b id="recapTexte">100 Go sans engagement — 12,99 €/mois</b>
+      </div>
+
+      <form id="formulaire" novalidate>
+        <div class="ligne">
+          <div class="champ">
+            <label for="prenom">Prénom</label>
+            <input id="prenom" name="prenom" type="text" autocomplete="given-name" required>
+            <span class="erreur">Indiquez votre prénom.</span>
+          </div>
+          <div class="champ">
+            <label for="nom">Nom</label>
+            <input id="nom" name="nom" type="text" autocomplete="family-name" required>
+            <span class="erreur">Indiquez votre nom.</span>
+          </div>
+        </div>
+        <div class="champ">
+          <label for="courriel">Adresse électronique</label>
+          <input id="courriel" name="courriel" type="email" autocomplete="email" placeholder="prenom.nom@exemple.fr" required>
+          <span class="erreur">Cette adresse ne semble pas valide.</span>
+        </div>
+        <div class="champ">
+          <label for="tel">Téléphone</label>
+          <input id="tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" placeholder="06 12 34 56 78" required>
+          <span class="erreur">Indiquez un numéro à 10 chiffres.</span>
+        </div>
+
+        <!-- Champs masqués : origine du trafic, repris dans GA4 et le CRM -->
+        <input type="hidden" name="utm_source" id="utm_source">
+        <input type="hidden" name="utm_medium" id="utm_medium">
+        <input type="hidden" name="utm_campaign" id="utm_campaign">
+        <input type="hidden" name="forfait" id="champForfait">
+
+        <button class="btn btn-jaune" type="submit" style="width:100%">Valider ma souscription</button>
+        <p class="mention">
+          Vos données servent uniquement à traiter votre demande. Vous pouvez les consulter,
+          les corriger ou les supprimer à tout moment.
+        </p>
+      </form>
+
+      <div class="succes" id="succes" role="status">
+        Demande enregistrée. Un courriel de confirmation part à l'instant vers l'adresse indiquée.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== PIED DE PAGE ====================== -->
+<footer class="pied">
+  <div class="wrap">
+    <div class="pied-haut">
+      <div style="max-width:280px">
+        <div class="logo" style="margin-bottom:14px">
+            <img src="image/pi.png" alt="La Poste Mobile"
+           onerror="this.remove();document.getElementById('logoSub').style.display='flex'">
+        </div>
+        <p>Opérateur mobile du Groupe La Poste, présent dans 17 000 bureaux en France.</p>
+      </div>
+      <div>
+        <h4>L'offre</h4>
+        <a href="#offre">Forfaits</a><a href="#reseau">Bureaux de poste</a><a href="#questions">Questions fréquentes</a>
+      </div>
+      <div>
+        <h4>Assistance</h4>
+        <a href="#">Espace client</a><a href="#">Nous contacter</a><a href="#">Suivi de commande</a>
+      </div>
+      <div>
+        <h4>Informations</h4>
+        <a href="#">Mentions légales</a><a href="#">Données personnelles</a><a href="#">Gestion des cookies</a>
+      </div>
+    </div>
+    <div class="pied-bas">
+      Page réalisée à des fins pédagogiques dans le cadre d'un travail pratique étudiant.
+      Les tarifs, chiffres et engagements présentés sont fictifs et n'engagent pas le Groupe La Poste.
+      Les marques et le logotype cités appartiennent à leurs titulaires respectifs.
+    </div>
+  </div>
+</footer>
+
+<!-- ====================== BARRE MOBILE ====================== -->
+<div class="barre-mobile">
+  <div class="p"><span id="prixMobile">12,99 €</span><small id="libelleMobile">100 Go · sans engagement</small></div>
+  <a class="btn btn-jaune btn-sm" href="#souscrire" data-cta="barre-mobile">Souscrire</a>
+</div>
+
+<!-- ====================== CONSOLE GA4 ====================== -->
+<button class="ga-ouvrir" id="gaOuvrir" aria-expanded="false" aria-controls="gaPanneau">
+  Événements GA4 <span id="gaCompte">(0)</span>
+</button>
+<div class="ga-panneau" id="gaPanneau">
+  <div class="ga-tete">
+    <strong>dataLayer — plan de marquage</strong>
+    <button type="button" id="gaFermer" aria-label="Fermer le panneau">✕</button>
+  </div>
+  <div class="ga-corps" id="gaCorps">
+    <p class="ga-vide">Interagissez avec la page : les événements envoyés à Google Analytics s'affichent ici.</p>
+  </div>
+</div>
+
+<script>
+try{
+/* =========================================================================
+   1. PLAN DE MARQUAGE GA4
+   Chaque interaction pousse un événement dans window.dataLayer, exactement
+   comme le ferait Google Tag Manager en production. Le panneau les affiche
+   pour rendre le plan de mesure visible pendant la soutenance.
+   ========================================================================= */
+window.dataLayer = window.dataLayer || [];
+const gaCorps = document.getElementById('gaCorps');
+const gaCompte = document.getElementById('gaCompte');
+let nbEvenements = 0;
+
+function pousser(nom, parametres){
+  const evenement = Object.assign({event:nom}, parametres || {});
+  window.dataLayer.push(evenement);
+  nbEvenements++;
+  gaCompte.textContent = '(' + nbEvenements + ')';
+
+  const vide = gaCorps.querySelector('.ga-vide');
+  if (vide) vide.remove();
+
+  const heure = new Date().toLocaleTimeString('fr-FR');
+  const ligne = document.createElement('div');
+  ligne.className = 'ga-ligne';
+  const details = Object.keys(evenement)
+    .filter(c => c !== 'event')
+    .map(c => c + ': ' + evenement[c])
+    .join(' · ');
+  ligne.innerHTML = '<b>' + nom + '</b><span>' + heure + (details ? ' — ' + details : '') + '</span>';
+  gaCorps.prepend(ligne);
+}
+
+document.getElementById('gaOuvrir').addEventListener('click', function(){
+  const panneau = document.getElementById('gaPanneau');
+  const ouvert = panneau.classList.toggle('visible');
+  this.setAttribute('aria-expanded', ouvert);
+});
+document.getElementById('gaFermer').addEventListener('click', function(){
+  document.getElementById('gaPanneau').classList.remove('visible');
+  document.getElementById('gaOuvrir').setAttribute('aria-expanded','false');
+});
+
+/* =========================================================================
+   2. CONFIGURATEUR DE FORFAIT
+   ========================================================================= */
+const FORFAITS = [
+  {data:'5 Go',   prix:4.99},
+  {data:'20 Go',  prix:8.99},
+  {data:'100 Go', prix:12.99},
+  {data:'200 Go', prix:19.99}
+];
+const REMISE_ENGAGEMENT = 2;
+
+const curseur      = document.getElementById('curseur');
+const valeurData   = document.getElementById('valeurData');
+const montant      = document.getElementById('montant');
+const libelleForf  = document.getElementById('libelleForfait');
+const ligneForfait = document.getElementById('ligneForfait');
+const ligneTotal   = document.getElementById('ligneTotal');
+const recapTexte   = document.getElementById('recapTexte');
+const prixMobile   = document.getElementById('prixMobile');
+const libelleMobile= document.getElementById('libelleMobile');
+const champForfait = document.getElementById('champForfait');
+const btnLibre     = document.getElementById('btnLibre');
+const btnEngage    = document.getElementById('btnEngage');
+
+let engage = false;
+
+function euros(v){ return v.toFixed(2).replace('.', ',') + ' €'; }
+
+function prixCourant(){
+  const base = FORFAITS[curseur.value].prix;
+  return engage ? Math.max(base - REMISE_ENGAGEMENT, 0) : base;
+}
+
+function rafraichir(){
+  const forfait = FORFAITS[curseur.value];
+  const prix = prixCourant();
+  const duree = engage ? 'avec engagement 12 mois' : 'sans engagement';
+
+  valeurData.textContent   = forfait.data;
+  libelleForf.textContent  = forfait.data;
+  montant.textContent      = euros(prix);
+  ligneForfait.textContent = euros(prix);
+  ligneTotal.textContent   = euros(prix);
+  recapTexte.textContent   = forfait.data + ' ' + duree + ' — ' + euros(prix) + '/mois';
+  prixMobile.textContent   = euros(prix);
+  libelleMobile.textContent= forfait.data + ' · ' + (engage ? '12 mois' : 'sans engagement');
+  champForfait.value       = forfait.data + ' / ' + duree + ' / ' + euros(prix);
+
+  // Teinte de la piste du curseur à gauche du curseur
+  const pourcent = (curseur.value / (FORFAITS.length - 1)) * 100;
+  curseur.style.background =
+    'linear-gradient(90deg, var(--bleu) 0%, var(--bleu) ' + pourcent + '%, var(--gris-bord) ' + pourcent + '%)';
+}
+
+let minuteur;
+curseur.addEventListener('input', function(){
+  rafraichir();
+  clearTimeout(minuteur);
+  minuteur = setTimeout(function(){
+    const f = FORFAITS[curseur.value];
+    pousser('select_item', {item_name:'Forfait ' + f.data, price:prixCourant()});
+  }, 400);
+});
+
+function definirEngagement(valeur){
+  engage = valeur;
+  btnLibre.setAttribute('aria-pressed', String(!valeur));
+  btnEngage.setAttribute('aria-pressed', String(valeur));
+  rafraichir();
+  pousser('select_promotion', {promotion_name: valeur ? 'Engagement 12 mois' : 'Sans engagement'});
+}
+btnLibre.addEventListener('click', function(){ definirEngagement(false); });
+btnEngage.addEventListener('click', function(){ definirEngagement(true); });
+
+rafraichir();
+
+/* =========================================================================
+   3. ÉVÉNEMENTS DE PARCOURS
+   ========================================================================= */
+document.querySelectorAll('[data-cta]').forEach(function(lien){
+  lien.addEventListener('click', function(){
+    const f = FORFAITS[curseur.value];
+    pousser('begin_checkout', {
+      emplacement: lien.dataset.cta,
+      item_name: 'Forfait ' + f.data,
+      value: prixCourant(),
+      currency: 'EUR'
+    });
+  });
+});
+
+/* =========================================================================
+   4. RECHERCHE DE BUREAU
+   ========================================================================= */
+document.getElementById('btnCp').addEventListener('click', function(){
+  const champ = document.getElementById('cp');
+  const sortie = document.getElementById('resultatCp');
+  const cp = champ.value.trim();
+  if (!/^\d{5}$/.test(cp)) {
+    sortie.textContent = 'Saisissez un code postal à 5 chiffres.';
+    return;
+  }
+  // En production : appel au service de localisation des points de contact.
+  const nb = 2 + (parseInt(cp.slice(-2), 10) % 6);
+  sortie.textContent = nb + ' bureaux proposent le service mobile autour du ' + cp + '.';
+  pousser('search', {search_term: cp, resultats: nb});
+});
+
+/* =========================================================================
+   5. FAQ ACCORDÉON
+   ========================================================================= */
+document.querySelectorAll('.q button').forEach(function(bouton){
+  bouton.addEventListener('click', function(){
+    const reponse = bouton.nextElementSibling;
+    const ouvert = bouton.getAttribute('aria-expanded') === 'true';
+
+    document.querySelectorAll('.q button').forEach(function(autre){
+      autre.setAttribute('aria-expanded','false');
+      autre.nextElementSibling.style.maxHeight = null;
+    });
+
+    if (!ouvert) {
+      bouton.setAttribute('aria-expanded','true');
+      reponse.style.maxHeight = reponse.scrollHeight + 'px';
+      pousser('faq_ouverte', {question: bouton.textContent.replace('+','').trim()});
+    }
+  });
+});
+
+/* =========================================================================
+   6. FORMULAIRE
+   ========================================================================= */
+const formulaire = document.getElementById('formulaire');
+
+function verifier(champ){
+  const bloc = champ.closest('.champ');
+  let valide = champ.value.trim().length > 0;
+  if (champ.type === 'email')  valide = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(champ.value.trim());
+  if (champ.type === 'tel')    valide = champ.value.replace(/\D/g,'').length === 10;
+  bloc.classList.toggle('invalide', !valide);
+  champ.setAttribute('aria-invalid', String(!valide));
+  return valide;
+}
+
+formulaire.querySelectorAll('input[required]').forEach(function(champ){
+  champ.addEventListener('blur', function(){ verifier(champ); });
+  champ.addEventListener('input', function(){
+    if (champ.closest('.champ').classList.contains('invalide')) verifier(champ);
+  });
+});
+
+formulaire.addEventListener('submit', function(e){
+  e.preventDefault();
+  const champs = Array.from(formulaire.querySelectorAll('input[required]'));
+  const valide = champs.map(verifier).every(Boolean);
+
+  if (!valide) {
+    const premier = formulaire.querySelector('.champ.invalide input');
+    if (premier) premier.focus();
+    pousser('form_erreur', {champs_invalides: champs.filter(function(c){
+      return c.closest('.champ').classList.contains('invalide');
+    }).length});
+    return;
+  }
+
+  const f = FORFAITS[curseur.value];
+  pousser('generate_lead', {
+    item_name: 'Forfait ' + f.data,
+    value: prixCourant(),
+    currency: 'EUR',
+    utm_source: document.getElementById('utm_source').value || '(direct)'
+  });
+  pousser('purchase', {
+    transaction_id: 'TP-' + Date.now(),
+    value: prixCourant(),
+    currency: 'EUR',
+    items: 'Forfait ' + f.data
+  });
+
+  formulaire.style.display = 'none';
+  document.getElementById('succes').classList.add('visible');
+  document.getElementById('succes').focus();
+});
+
+/* =========================================================================
+   7. CAPTURE DES PARAMÈTRES UTM
+   Sans ce relevé, le CAC par canal reste incalculable.
+   ========================================================================= */
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  ['utm_source','utm_medium','utm_campaign'].forEach(function(cle){
+    const valeur = params.get(cle);
+    if (valeur) document.getElementById(cle).value = valeur;
+  });
+  pousser('page_view', {
+    page_title: document.title,
+    utm_source: params.get('utm_source') || '(direct)',
+    utm_medium: params.get('utm_medium') || '(none)'
+  });
+})();
+
+/* =========================================================================
+   8. COMPTEURS ET RÉVÉLATION AU DÉFILEMENT
+   ========================================================================= */
+const mouvementReduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function animerCompteur(element){
+  const cible = parseFloat(element.dataset.compteur);
+  const suffixe = element.dataset.suffixe || '';
+  const decimal = element.dataset.decimal === 'true';
+
+  if (mouvementReduit) {
+    element.textContent = (decimal ? cible.toFixed(1) : cible.toLocaleString('fr-FR')) + suffixe;
+    return;
+  }
+  const duree = 1400;
+  const depart = performance.now();
+  function etape(maintenant){
+    const t = Math.min((maintenant - depart) / duree, 1);
+    const adouci = 1 - Math.pow(1 - t, 3);
+    const valeur = cible * adouci;
+    element.textContent = (decimal ? valeur.toFixed(1) : Math.round(valeur).toLocaleString('fr-FR')) + suffixe;
+    if (t < 1) requestAnimationFrame(etape);
+  }
+  requestAnimationFrame(etape);
+}
+
+const observateur = new IntersectionObserver(function(entrees){
+  entrees.forEach(function(entree){
+    if (!entree.isIntersecting) return;
+    entree.target.classList.add('vu');
+    const compteur = entree.target.querySelector('[data-compteur]');
+    if (compteur && !compteur.dataset.fait) {
+      compteur.dataset.fait = '1';
+      animerCompteur(compteur);
+    }
+    observateur.unobserve(entree.target);
+  });
+}, {threshold:.2});
+
+document.querySelectorAll('.reveal').forEach(function(el){ observateur.observe(el); });
+
+/* Profondeur de défilement — utile pour mesurer l'engagement dans GA4 */
+let seuilsAtteints = {};
+window.addEventListener('scroll', function(){
+  const profondeur = (window.scrollY + window.innerHeight) / document.body.scrollHeight * 100;
+  [50, 90].forEach(function(seuil){
+    if (profondeur >= seuil && !seuilsAtteints[seuil]) {
+      seuilsAtteints[seuil] = true;
+      pousser('scroll', {percent_scrolled: seuil});
+    }
+  });
+}, {passive:true});
+}catch(err){
+  /* Une defaillance du script ne doit jamais masquer le contenu de la page. */
+  console.error('Landing — erreur JavaScript :', err);
+  document.documentElement.classList.remove('js');
+}
+</script>
+</body>
+</html>
