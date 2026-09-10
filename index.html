@@ -1,966 +1,619 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Forfait mobile sans engagement — La Poste Mobile</title>
-<meta name="description" content="Le forfait mobile au prix affiché, sans engagement, avec un conseiller dans votre bureau de poste. Souscription en 3 minutes.">
+<title>Hojo — crèche bienveillante à Paris 11e</title>
+<meta name="description" content="Hojo, crèche bienveillante pour les enfants de 0 à 3 ans à Paris 11e. Chaque enfant grandit à son rythme.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,800;0,900;1,400&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-/* =========================================================================
-   CHARTE GRAPHIQUE — GROUPE LA POSTE
-   Jaune La Poste  #FFCD00   couleur de marque, réservée aux surfaces d'appel
-   Bleu La Poste   #002E5D   couleur d'encre, titres et fonds sombres
-   Bleu vif        #0068B4   liens et états actifs
-   La police officielle du Groupe est "Poste Sans" (propriétaire, non libre
-   de droits). Manrope est utilisée ici comme substitut de même famille
-   (linéale humaniste). À remplacer par Poste Sans en production.
-   ========================================================================= */
-:root{
-  --jaune:#FFCD00;
-  --jaune-sombre:#E0B400;
-  --bleu:#002E5D;
-  --bleu-vif:#0068B4;
-  --encre:#14181F;
-  --gris:#F4F5F7;
-  --gris-bord:#E2E5EA;
-  --gris-texte:#5B6472;
-  --blanc:#FFFFFF;
-  --vert:#0B7D5A;
-  --rayon:14px;
-  --contenu:1120px;
-  --ombre:0 2px 4px rgba(0,46,93,.06), 0 12px 32px rgba(0,46,93,.10);
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important}
-}
-body{
-  margin:0;
-  font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
-  color:var(--encre);
-  background:var(--blanc);
-  font-size:16px;
-  line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-}
-h1,h2,h3{color:var(--bleu);line-height:1.15;margin:0;letter-spacing:-.02em}
-h1{font-size:clamp(2rem,4.6vw,3.35rem);font-weight:800}
-h2{font-size:clamp(1.5rem,3vw,2.25rem);font-weight:800}
-h3{font-size:1.125rem;font-weight:700;letter-spacing:-.01em}
-p{margin:0}
-a{color:var(--bleu-vif)}
-.wrap{max-width:var(--contenu);margin:0 auto;padding:0 24px}
-.eyebrow{
-  font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--bleu-vif);margin-bottom:14px;
-}
-
-/* ---------- Bandeau de mention pédagogique ---------- */
-.bandeau-tp{
-  background:var(--bleu);color:#C9D6E5;font-size:.78rem;text-align:center;
-  padding:7px 16px;letter-spacing:.01em;
-}
-.bandeau-tp strong{color:var(--jaune);font-weight:700}
-
-/* ---------- En-tête ---------- */
-.entete{
-  position:sticky;top:0;z-index:60;background:rgba(255,255,255,.94);
-  backdrop-filter:saturate(180%) blur(12px);
-  border-bottom:1px solid var(--gris-bord);
-}
-.entete-in{display:flex;align-items:center;gap:20px;height:70px}
-.logo{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
-.logo img{height:38px;width:auto;display:block}
-/* Substitut affiché tant que le logo officiel n'est pas déposé dans le dossier.
-   Remplacer par le fichier fourni par la direction de la communication. */
-.logo-substitut{
-  display:flex;align-items:center;justify-content:center;
-  width:44px;height:44px;border-radius:9px;background:var(--jaune);
-  font-weight:800;font-size:.62rem;line-height:1.05;color:var(--bleu);
-  text-align:center;letter-spacing:.01em;
-}
-.logo-mot{font-weight:800;color:var(--bleu);font-size:1.02rem;letter-spacing:-.02em}
-.logo-mot span{display:block;font-size:.66rem;font-weight:600;color:var(--gris-texte);letter-spacing:.16em;text-transform:uppercase}
-.entete nav{margin-left:auto;display:flex;align-items:center;gap:26px}
-.entete nav a{
-  color:var(--bleu);text-decoration:none;font-weight:600;font-size:.92rem;
-  padding:6px 0;border-bottom:2px solid transparent;
-}
-.entete nav a:hover{border-bottom-color:var(--jaune)}
-@media(max-width:860px){.entete nav .lien-nav{display:none}}
-
-/* ---------- Boutons ---------- */
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:9px;
-  font-family:inherit;font-weight:800;font-size:1rem;
-  padding:15px 28px;border-radius:10px;border:2px solid transparent;
-  cursor:pointer;text-decoration:none;transition:transform .12s ease,box-shadow .18s ease,background .18s ease;
-}
-.btn:focus-visible{outline:3px solid var(--bleu-vif);outline-offset:3px}
-.btn-jaune{background:var(--jaune);color:var(--bleu);box-shadow:0 4px 0 var(--jaune-sombre)}
-.btn-jaune:hover{background:#FFD727;transform:translateY(-1px);box-shadow:0 5px 0 var(--jaune-sombre)}
-.btn-jaune:active{transform:translateY(2px);box-shadow:0 2px 0 var(--jaune-sombre)}
-.btn-bleu{background:var(--bleu);color:#fff}
-.btn-bleu:hover{background:#003D78}
-.btn-ligne{background:transparent;color:var(--bleu);border-color:var(--gris-bord)}
-.btn-ligne:hover{border-color:var(--bleu)}
-.btn-sm{padding:10px 18px;font-size:.9rem;border-radius:8px}
-
-/* ---------- Hero ---------- */
-.hero{position:relative;overflow:hidden;background:var(--blanc);padding:56px 0 64px}
-.hero::before{
-  content:"";position:absolute;inset:0;z-index:0;
-  background:
-    radial-gradient(760px 420px at 88% -8%, rgba(255,205,0,.30), transparent 62%),
-    radial-gradient(560px 380px at -6% 108%, rgba(0,104,180,.10), transparent 60%);
-}
-.hero-grille{position:relative;z-index:1;display:grid;grid-template-columns:1.02fr .98fr;gap:52px;align-items:start}
-@media(max-width:940px){.hero-grille{grid-template-columns:1fr;gap:36px}}
-.hero p.accroche{font-size:1.12rem;color:var(--gris-texte);margin-top:18px;max-width:34rem}
-.hero h1 mark{background:linear-gradient(180deg,transparent 58%,var(--jaune) 58%);color:inherit;padding:0 3px}
-
-.puces{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:11px}
-.puces li{display:flex;gap:11px;align-items:flex-start;font-weight:600;color:var(--bleu);font-size:.98rem}
-.coche{
-  flex:0 0 21px;height:21px;border-radius:50%;background:var(--bleu);color:var(--jaune);
-  display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:800;margin-top:2px;
-}
-
-/* ---------- Configurateur ---------- */
-.config{
-  background:var(--blanc);border:1px solid var(--gris-bord);border-radius:var(--rayon);
-  box-shadow:var(--ombre);padding:26px;position:relative;
-}
-.config-haut{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:20px}
-.config-haut h2{font-size:1.2rem}
-.badge{
-  background:var(--jaune);color:var(--bleu);font-size:.7rem;font-weight:800;
-  padding:5px 11px;border-radius:99px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;
-}
-.champ-titre{
-  display:flex;justify-content:space-between;align-items:baseline;
-  font-size:.8rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
-  color:var(--gris-texte);margin-bottom:12px;
-}
-.champ-titre b{color:var(--bleu);font-size:1.5rem;letter-spacing:-.02em}
-
-input[type=range]{
-  -webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:99px;
-  background:var(--gris-bord);outline:none;margin:0;cursor:pointer;
-}
-input[type=range]::-webkit-slider-thumb{
-  -webkit-appearance:none;appearance:none;width:28px;height:28px;border-radius:50%;
-  background:var(--jaune);border:4px solid var(--bleu);cursor:pointer;
-}
-input[type=range]::-moz-range-thumb{
-  width:28px;height:28px;border-radius:50%;background:var(--jaune);
-  border:4px solid var(--bleu);cursor:pointer;
-}
-input[type=range]:focus-visible{outline:3px solid var(--bleu-vif);outline-offset:4px}
-.graduations{display:flex;justify-content:space-between;margin-top:9px;font-size:.75rem;color:var(--gris-texte);font-weight:600}
-
-.bascule{display:grid;grid-template-columns:1fr 1fr;gap:8px;background:var(--gris);padding:5px;border-radius:11px;margin:22px 0 4px}
-.bascule button{
-  font-family:inherit;font-size:.86rem;font-weight:700;color:var(--gris-texte);
-  background:transparent;border:0;border-radius:8px;padding:11px 8px;cursor:pointer;transition:all .16s ease;
-}
-.bascule button[aria-pressed=true]{background:var(--blanc);color:var(--bleu);box-shadow:0 1px 3px rgba(0,46,93,.16)}
-.bascule button:focus-visible{outline:2px solid var(--bleu-vif);outline-offset:2px}
-
-.prix-bloc{border-top:1px solid var(--gris-bord);margin-top:22px;padding-top:20px}
-.prix{display:flex;align-items:flex-end;gap:10px}
-.prix .montant{font-size:3.5rem;font-weight:800;color:var(--bleu);line-height:.92;letter-spacing:-.045em}
-.prix .par{color:var(--gris-texte);font-weight:600;padding-bottom:7px}
-.prix-detail{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:7px;font-size:.85rem}
-.prix-detail li{display:flex;justify-content:space-between;color:var(--gris-texte)}
-.prix-detail li b{color:var(--bleu);font-weight:700}
-.prix-detail li.total{border-top:1px dashed var(--gris-bord);padding-top:9px;margin-top:3px;color:var(--bleu);font-weight:700}
-.config .btn{width:100%;margin-top:20px}
-.mention{font-size:.74rem;color:var(--gris-texte);margin-top:12px;text-align:center;line-height:1.5}
-
-/* ---------- Preuve ---------- */
-.preuve{background:var(--bleu);color:#fff;padding:46px 0}
-.preuve-grille{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;text-align:center}
-@media(max-width:760px){.preuve-grille{grid-template-columns:1fr;gap:26px}}
-.stat .nombre{font-size:2.9rem;font-weight:800;color:var(--jaune);line-height:1;letter-spacing:-.03em}
-.stat .libelle{color:#BDCBDC;font-size:.94rem;margin-top:9px}
-
-/* ---------- Sections ---------- */
-.section{padding:72px 0}
-.section-gris{background:var(--gris)}
-.entete-section{max-width:38rem;margin-bottom:40px}
-.entete-section p{color:var(--gris-texte);margin-top:14px;font-size:1.03rem}
-
-.cartes{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-@media(max-width:940px){.cartes{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.cartes{grid-template-columns:1fr}}
-.carte{
-  background:var(--blanc);border:1px solid var(--gris-bord);border-radius:var(--rayon);
-  padding:26px 22px;transition:transform .18s ease,box-shadow .18s ease;
-}
-.carte:hover{transform:translateY(-3px);box-shadow:var(--ombre)}
-.pastille{
-  width:46px;height:46px;border-radius:12px;background:var(--jaune);
-  display:flex;align-items:center;justify-content:center;margin-bottom:16px;
-}
-.pastille svg{width:23px;height:23px;stroke:var(--bleu);fill:none;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
-.carte p{color:var(--gris-texte);font-size:.93rem;margin-top:9px}
-
-/* ---------- Réseau ---------- */
-.reseau{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
-@media(max-width:860px){.reseau{grid-template-columns:1fr;gap:32px}}
-.carte-guichet{
-  background:var(--bleu);border-radius:var(--rayon);padding:34px;color:#fff;position:relative;overflow:hidden;
-}
-.carte-guichet::after{
-  content:"";position:absolute;right:-58px;bottom:-58px;width:190px;height:190px;
-  border-radius:50%;background:rgba(255,205,0,.16);
-}
-.carte-guichet h3{color:var(--jaune);font-size:1.28rem}
-.carte-guichet p{color:#C4D2E3;margin-top:13px;position:relative;z-index:1}
-.carte-guichet .btn{margin-top:22px;position:relative;z-index:1}
-
-/* ---------- FAQ ---------- */
-.faq{max-width:760px;margin:0 auto}
-.q{border-bottom:1px solid var(--gris-bord)}
-.q button{
-  width:100%;display:flex;justify-content:space-between;align-items:center;gap:18px;
-  background:none;border:0;padding:20px 2px;cursor:pointer;text-align:left;
-  font-family:inherit;font-size:1.02rem;font-weight:700;color:var(--bleu);
-}
-.q button:focus-visible{outline:2px solid var(--bleu-vif);outline-offset:2px}
-.q .signe{
-  flex:0 0 26px;height:26px;border-radius:50%;background:var(--gris);color:var(--bleu);
-  display:flex;align-items:center;justify-content:center;font-weight:800;transition:transform .2s ease,background .2s ease;
-}
-.q button[aria-expanded=true] .signe{background:var(--jaune);transform:rotate(45deg)}
-.q .reponse{max-height:0;overflow:hidden;transition:max-height .28s ease}
-.q .reponse p{padding:0 2px 20px;color:var(--gris-texte);font-size:.96rem}
-
-/* ---------- Formulaire ---------- */
-.form-grille{display:grid;grid-template-columns:.9fr 1.1fr;gap:52px;align-items:start}
-@media(max-width:860px){.form-grille{grid-template-columns:1fr;gap:32px}}
-.formulaire{background:var(--blanc);border:1px solid var(--gris-bord);border-radius:var(--rayon);padding:28px;box-shadow:var(--ombre)}
-.ligne{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:520px){.ligne{grid-template-columns:1fr}}
-.champ{margin-bottom:16px}
-.champ label{display:block;font-size:.82rem;font-weight:700;color:var(--bleu);margin-bottom:7px}
-.champ input{
-  width:100%;padding:13px 14px;border:1.5px solid var(--gris-bord);border-radius:9px;
-  font-family:inherit;font-size:.97rem;color:var(--encre);background:var(--blanc);transition:border-color .15s ease;
-}
-.champ input:focus{outline:none;border-color:var(--bleu-vif);box-shadow:0 0 0 3px rgba(0,104,180,.13)}
-.champ input[aria-invalid=true]{border-color:#C0392B}
-.erreur{display:none;color:#C0392B;font-size:.8rem;font-weight:600;margin-top:6px}
-.champ.invalide .erreur{display:block}
-.recap{
-  background:var(--gris);border-radius:10px;padding:15px 17px;margin-bottom:20px;
-  display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
-}
-.recap span{font-size:.85rem;color:var(--gris-texte);font-weight:600}
-.recap b{color:var(--bleu);font-size:1.05rem}
-.succes{
-  display:none;background:#E9F6F1;border:1.5px solid #B5E0D0;border-radius:10px;
-  padding:18px;color:var(--vert);font-weight:700;font-size:.95rem;
-}
-.succes.visible{display:block}
-
-/* ---------- Pied de page ---------- */
-.pied{background:var(--bleu);color:#9FB3C9;padding:44px 0 30px;font-size:.87rem}
-.pied-haut{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;align-items:flex-start}
-.pied a{color:#C4D2E3;text-decoration:none;display:block;padding:3px 0}
-.pied a:hover{color:var(--jaune)}
-.pied h4{color:#fff;font-size:.82rem;text-transform:uppercase;letter-spacing:.1em;margin:0 0 12px}
-.pied-bas{border-top:1px solid rgba(255,255,255,.13);margin-top:30px;padding-top:20px;font-size:.78rem;line-height:1.7}
-
-/* ---------- Barre mobile ---------- */
-.barre-mobile{
-  position:fixed;left:0;right:0;bottom:0;z-index:70;display:none;
-  background:var(--blanc);border-top:1px solid var(--gris-bord);
-  padding:11px 16px;box-shadow:0 -4px 20px rgba(0,46,93,.12);
-  align-items:center;justify-content:space-between;gap:14px;
-}
-.barre-mobile .p{font-weight:800;color:var(--bleu);font-size:1.15rem;line-height:1.1}
-.barre-mobile .p small{display:block;font-size:.7rem;font-weight:600;color:var(--gris-texte)}
-@media(max-width:760px){.barre-mobile{display:flex}body{padding-bottom:76px}}
-
-/* ---------- Console GA4 ---------- */
-.ga-ouvrir{
-  position:fixed;right:18px;bottom:18px;z-index:80;
-  background:var(--bleu);color:var(--jaune);border:0;border-radius:99px;
-  padding:11px 17px;font-family:inherit;font-size:.8rem;font-weight:800;cursor:pointer;
-  box-shadow:0 6px 20px rgba(0,46,93,.3);
-}
-@media(max-width:760px){.ga-ouvrir{bottom:84px}}
-.ga-panneau{
-  position:fixed;right:18px;bottom:70px;z-index:81;width:min(360px,calc(100vw - 36px));
-  background:#0B1220;border:1px solid #1F2C42;border-radius:12px;
-  box-shadow:0 20px 50px rgba(0,0,0,.4);display:none;overflow:hidden;
-}
-@media(max-width:760px){.ga-panneau{bottom:136px}}
-.ga-panneau.visible{display:block}
-.ga-tete{
-  display:flex;justify-content:space-between;align-items:center;gap:12px;
-  padding:13px 15px;border-bottom:1px solid #1F2C42;
-}
-.ga-tete strong{color:var(--jaune);font-size:.82rem;letter-spacing:.03em}
-.ga-tete button{background:none;border:0;color:#7B8CA6;font-size:1.15rem;cursor:pointer;line-height:1;padding:0 3px}
-.ga-corps{max-height:280px;overflow-y:auto;padding:11px 15px 15px;font-size:.76rem}
-.ga-vide{color:#5F718C;font-style:italic}
-.ga-ligne{border-bottom:1px solid #16202F;padding:8px 0;color:#C7D4E6;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
-.ga-ligne b{color:#5BC8A0;font-weight:600}
-.ga-ligne span{color:#6E809B;display:block;font-size:.72rem;margin-top:2px}
-
-/* ---------- Révélation au défilement ---------- */
-/* Le contenu est visible par defaut. L'animation n'est activee que si le
-   JavaScript s'execute correctement (classe .js posee sur <html>). */
-.reveal{opacity:1;transform:none}
-.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
-.js .reveal.vu{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none}}
+  :root{
+    --sauge:#93C29D;
+    --sauge-fonce:#4A7A55;
+    --menthe:#DDEBDD;
+    --peche:#F2A585;
+    --peche-clair:#FBE3D6;
+    --ciel:#A9D3E0;
+    --soleil:#F5CD47;
+    --soleil-clair:#F8E27F;
+    --creme:#FCF5EC;
+    --encre:#33302E;
+    --encre-doux:#5C5652;
+    --r-grand:36px;
+    --r-moyen:20px;
+    --largeur:1140px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Nunito",system-ui,sans-serif;
+    font-size:1.0625rem;
+    line-height:1.6;
+    color:var(--encre);
+    background:var(--creme);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img,svg{display:block}
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--sauge-fonce);outline-offset:3px;border-radius:6px}
+  .conteneur{max-width:var(--largeur);margin:0 auto;padding:0 24px}
+ 
+  h1,h2,h3{line-height:1.15}
+  h2{font-family:"Nunito";font-weight:900;font-size:clamp(1.9rem,4vw,2.75rem);letter-spacing:-.01em}
+  h3{font-weight:800;font-size:1.2rem}
+  .intro{color:var(--encre-doux);max-width:56ch;margin-top:14px;font-size:1.1rem}
+ 
+  /* Boutons */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    font-family:"Quicksand";font-weight:700;font-size:1rem;
+    padding:14px 26px;border-radius:999px;border:2px solid transparent;
+    text-decoration:none;cursor:pointer;transition:transform .15s ease, background .15s ease;
+  }
+  .btn:active{transform:scale(.97)}
+  .btn-peche{background:var(--peche);color:var(--encre)}
+  .btn-peche:hover{background:#EE9470}
+  .btn-contour{border-color:var(--encre);color:var(--encre);background:transparent}
+  .btn-contour:hover{background:var(--encre);color:var(--creme)}
+/* Navigation */   .nav{     position:stick}
+/* Navigation */
+  .nav{
+    position:sticky;top:0;z-index:20;
+    background:rgba(252,245,236,.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(51,48,46,.06);
+  }
+  .nav .conteneur{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .logo svg{width:30px;height:36px}
+  .logo-texte{display:flex;flex-direction:column;line-height:1}
+  .logo-texte b{font-weight:900;font-size:1.35rem}
+  .logo-texte span{font-size:.78rem;color:var(--encre-doux);margin-top:3px}
+  .nav ul{display:flex;gap:30px;list-style:none}
+  .nav ul a{text-decoration:none;font-weight:600;font-size:.98rem}
+  .nav ul a:hover{color:var(--sauge-fonce)}
+  .nav .btn{padding:10px 20px;font-size:.95rem}
+ 
+  /* Hero */
+  .hero{position:relative;padding:56px 0 90px}
+  .hero .conteneur{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+  .hero h1{
+    font-family:"Quicksand";font-weight:700;
+    font-size:clamp(2.6rem,6.4vw,4.9rem);
+    line-height:1.02;letter-spacing:-.025em;
+  }
+  .hero p.accroche{font-size:1.2rem;color:var(--encre-doux);max-width:40ch;margin:24px 0 34px}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+  .hero-infos{display:flex;flex-wrap:wrap;gap:28px;margin-top:44px;font-size:.95rem}
+  .hero-infos div{display:flex;flex-direction:column}
+  .hero-infos strong{font-weight:900;font-size:1.5rem;line-height:1.1}
+  .hero-infos span{color:var(--encre-doux)}
+ 
+  .pousse-scene{position:relative;aspect-ratio:1/1.05;width:100%;max-width:520px;justify-self:center}
+  .pousse-scene svg{width:100%;height:100%;overflow:visible}
+ 
+  /* Animation d'ouverture : la pousse grandit */
+  .tige{stroke-dasharray:320;stroke-dashoffset:320;animation:tige 1.3s .25s cubic-bezier(.5,0,.3,1) forwards}
+  .feuille{transform-box:fill-box;transform:scale(0);animation:feuille .9s cubic-bezier(.3,1.4,.5,1) forwards}
+  .feuille.g{transform-origin:100% 100%;animation-delay:1.05s}
+  .feuille.d{transform-origin:0% 100%;animation-delay:1.25s}
+  .bourgeon{transform-box:fill-box;transform-origin:center;transform:scale(0);animation:bourgeon .7s 1.6s cubic-bezier(.3,1.6,.5,1) forwards}
+  .galet{transform-box:fill-box;transform-origin:center;animation:apparait .9s ease-out both}
+  @keyframes tige{to{stroke-dashoffset:0}}
+  @keyframes feuille{to{transform:scale(1)}}
+  @keyframes bourgeon{to{transform:scale(1)}}
+  @keyframes apparait{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+/* Valeurs */   .valeurs{padding:90px 0}
+/* Valeurs */
+  .valeurs{padding:90px 0}
+  .galets{display:flex;flex-wrap:wrap;gap:18px;margin-top:44px;align-items:flex-end}
+  .galet-valeur{
+    flex:1 1 200px;padding:34px 28px 30px;min-height:210px;
+    display:flex;flex-direction:column;justify-content:flex-end;
+  }
+  .galet-valeur h3{font-size:1.3rem;margin-bottom:6px}
+  .galet-valeur p{font-size:.97rem;line-height:1.5}
+  .v1{background:var(--sauge);border-radius:58% 42% 48% 52% / 45% 52% 48% 55%;min-height:250px}
+  .v2{background:var(--peche);border-radius:44% 56% 40% 60% / 58% 42% 58% 42%}
+  .v3{background:var(--ciel);border-radius:52% 48% 62% 38% / 40% 60% 40% 60%;min-height:270px}
+  .v4{background:var(--soleil-clair);border-radius:40% 60% 50% 50% / 55% 45% 55% 45%;min-height:230px}
+  .v5{background:var(--menthe);border-radius:60% 40% 45% 55% / 50% 55% 45% 50%}
+ 
+  /* Une journée */
+  .journee{padding:90px 0;background:var(--menthe);border-radius:var(--r-grand) var(--r-grand) 0 0}
+  .journee-grille{display:grid;grid-template-columns:1.35fr 1fr;gap:36px;margin-top:40px;align-items:stretch}
+  .ciel-carte{border-radius:var(--r-grand);overflow:hidden;background:#fff;position:relative}
+  .ciel-carte svg{width:100%;height:auto}
+  #cielFond{transition:fill .7s ease}
+  #soleil{transition:transform .9s cubic-bezier(.45,0,.25,1)}
+  #soleilCorps{transition:fill .7s ease}
+  #zzz{transition:opacity .5s ease}
+  .moment{
+    background:var(--creme);border-radius:var(--r-grand);padding:34px 32px;
+    display:flex;flex-direction:column;
+  }
+  .moment-heure{font-family:"Quicksand";font-weight:700;font-size:3.2rem;line-height:1;color:var(--sauge-fonce)}
+  .moment h3{font-size:1.55rem;margin:12px 0 10px}
+  .moment p{color:var(--encre-doux)}
+  .moment-note{
+    margin-top:auto;padding-top:22px;font-size:.93rem;color:var(--encre);
+    display:flex;gap:10px;align-items:flex-start;
+  }
+  .moment-note::before{content:"";flex:0 0 10px;height:10px;border-radius:50%;background:var(--peche);margin-top:7px}
+  .onglets{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+  .onglet{
+    font-family:"Quicksand";font-weight:700;font-size:.95rem;
+    border:2px solid var(--encre);background:transparent;color:var(--encre);
+    border-radius:999px;padding:8px 16px;cursor:pointer;
+    transition:background .2s ease,color .2s ease;
+  }
+  .onglet[aria-selected="true"]{background:var(--encre);color:var(--creme)}
+  .onglet:hover:not([aria-selected="true"]){background:rgba(51,48,46,.08)}
+  .moment-contenu{transition:opacity .25s ease}
+  .moment-contenu.change{opacity:0}
+/* Pédagogie */
+  .pedagogie{padding:40px 0 100px;background:var(--menthe);border-radius:0 0 var(--r-grand) var(--r-grand)}
+  .pedagogie .conteneur{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+  .approches{list-style:none;display:grid;gap:30px;margin-top:8px}
+  .approches li{display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:start}
+  .pastille{width:56px;height:56px;border-radius:50%;display:grid;place-items:center}
+  .pastille svg{width:28px;height:28px}
+  .approches p{color:var(--encre-doux);margin-top:4px}
+  .citation{
+    margin-top:44px;padding:30px 32px;background:var(--creme);
+    border-radius:var(--r-moyen) var(--r-grand) var(--r-grand) var(--r-grand);
+  }
+  .citation blockquote{font-family:"Quicksand";font-weight:600;font-size:1.25rem;line-height:1.45}
+  .citation figcaption{margin-top:14px;font-size:.93rem;color:var(--encre-doux)}
+  .citation figcaption b{color:var(--encre)}
+ 
+  /* Parents */
+  .parents{padding:100px 0}
+  .temoignages{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+  .temoignage{padding:30px;border-radius:var(--r-grand);background:#fff;display:flex;flex-direction:column;gap:18px}
+  .temoignage:nth-child(2){background:var(--peche-clair);transform:translateY(24px)}
+  .temoignage p{font-size:1.02rem}
+  .temoignage footer{margin-top:auto;display:flex;align-items:center;gap:12px;font-size:.93rem}
+  .avatar{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:.9rem}
+  .temoignage footer span{color:var(--encre-doux);display:block}
+ 
+  /* Portes ouvertes */
+  .portes{padding:40px 0 100px}
+  .portes-bloc{
+    position:relative;overflow:hidden;background:var(--soleil-clair);
+    border-radius:var(--r-grand);padding:64px 56px;
+    display:grid;grid-template-columns:1.2fr 1fr;gap:30px;align-items:center;
+  }
+  .portes-bloc::after{
+    content:"";position:absolute;width:420px;height:420px;border-radius:50%;
+    background:var(--soleil);right:-80px;top:-120px;
+  }
+  .portes-bloc > *{position:relative;z-index:1}
+  .portes-bloc h2{font-family:"Quicksand";font-weight:700;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1}
+  .portes-bloc p{margin-top:16px;max-width:42ch}
+  .portes-date{justify-self:end;text-align:right}
+  .portes-date .jour{font-family:"Quicksand";font-weight:700;font-size:clamp(3.5rem,8vw,6rem);line-height:.9}
+  .portes-date .mois{font-weight:900;font-size:1.4rem}
+  .portes-date .heures{margin:6px 0 20px}
+ 
+  /* Contact */
+  .contact{padding:100px 0;background:var(--encre);color:var(--creme);border-radius:var(--r-grand) var(--r-grand) 0 0}
+  .contact .conteneur{display:grid;grid-template-columns:1fr 1.1fr;gap:60px}
+  .contact .intro{color:#D9D2CB}
+  .coord{list-style:none;margin-top:36px;display:grid;gap:20px}
+  .coord li{display:grid;grid-template-columns:130px 1fr;gap:10px;font-size:1rem}
+  .coord span{color:var(--sauge)}
+  .coord a{text-decoration:none;border-bottom:1px solid rgba(252,245,236,.3)}
+  .coord a:hover{border-color:var(--peche)}
+  .formulaire{background:var(--creme);color:var(--encre);border-radius:var(--r-grand);padding:36px}
+  .formulaire h3{font-size:1.4rem;margin-bottom:22px}
+  .champ{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+  .champ label{font-weight:800;font-size:.93rem}
+  .champ input,.champ select,.champ textarea{
+    font:inherit;font-size:1rem;padding:12px 16px;border-radius:14px;
+    border:2px solid #E4DBD1;background:#fff;color:var(--encre);
+  }
+  .champ input:focus,.champ select:focus,.champ textarea:focus{outline:none;border-color:var(--sauge-fonce)}
+  .champs-duo{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .formulaire .btn{width:100%;margin-top:6px}
+  .statut{margin-top:14px;font-weight:700;color:var(--sauge-fonce);min-height:1.6em}
+ 
+  footer.pied{background:var(--encre);color:#BDB4AC;padding:0 0 36px;font-size:.9rem}
+  footer.pied .conteneur{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid rgba(252,245,236,.12);padding-top:28px}
+  footer.pied .logo-texte b{color:var(--creme)}
+  footer.pied .logo-texte span{color:#BDB4AC}
+/* Responsive */
+/* Responsive */
+  @media (max-width:920px){
+    .nav ul{display:none}
+    .hero{padding:28px 0 70px}
+    .hero .conteneur{grid-template-columns:1fr}
+    .pousse-scene{max-width:300px;order:-1}
+    .journee-grille,.pedagogie .conteneur,.contact .conteneur{grid-template-columns:1fr}
+    .pedagogie .conteneur{gap:40px}
+    .temoignages{grid-template-columns:1fr}
+    .temoignage:nth-child(2){transform:none}
+    .portes-bloc{grid-template-columns:1fr;padding:44px 30px}
+    .portes-date{justify-self:start;text-align:left}
+  }
+  @media (max-width:560px){
+    .nav .btn{padding:9px 14px;font-size:.88rem}
+    .galet-valeur{flex-basis:100%;min-height:170px !important}
+    .champs-duo{grid-template-columns:1fr}
+    .coord li{grid-template-columns:1fr;gap:0}
+    .formulaire{padding:26px 22px}
+    .moment{padding:28px 24px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;animation-delay:0s !important;transition-duration:.01ms !important}
+    html{scroll-behavior:auto}
+    .tige{stroke-dashoffset:0}
+    .feuille,.bourgeon{transform:scale(1)}
+  }
 </style>
-<script>document.documentElement.className+=' js';</script>
 </head>
 <body>
-
-<div class="bandeau-tp">
-  Maquette réalisée dans le cadre d'un <strong>TP acquisition</strong> — offres et tarifs fictifs, sans valeur contractuelle.
-</div>
-
-<!-- ====================== EN-TÊTE ====================== -->
-<header class="entete">
-  <div class="wrap entete-in">
-    <a class="logo" href="#haut" aria-label="La Poste Mobile, retour en haut de page">
-      <!-- Déposer le fichier officiel sous ce nom pour remplacer le substitut ci-dessous -->
-      <img src="pi.png" alt="La Poste Mobile"
-           onerror="this.remove();document.getElementById('logoSub').style.display='flex'">
-      <span class="logo-substitut" id="logoSub" style="display:none">LA<br>POSTE</span>
-      <span class="logo-mot" id="logoMot">Mobile<span>Groupe La Poste</span></span>
+ 
+<!-- Logo réutilisable -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="picto" viewBox="0 0 40 48">
+    <path d="M20 46V22" stroke="#4A7A55" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M20 32C10 32 4.5 24 6.5 16.5C13.5 16.5 19.5 22 20 32Z" fill="#93C29D"/>
+    <path d="M20 32C30 32 35.5 24 33.5 16.5C26.5 16.5 20.5 22 20 32Z" fill="#93C29D"/>
+    <circle cx="20" cy="10" r="6.5" fill="#F2A585"/>
+  </symbol>
+</svg>
+ 
+<nav class="nav" aria-label="Navigation principale">
+  <div class="conteneur">
+    <a href="#" class="logo" aria-label="Hojo, accueil">
+      <svg><use href="#picto"/></svg>
+      <span class="logo-texte"><b>Hojo</b><span>crèche bienveillante</span></span>
     </a>
-    <nav>
-      <a class="lien-nav" href="#offre">L'offre</a>
-      <a class="lien-nav" href="#reseau">En bureau de poste</a>
-      <a class="lien-nav" href="#questions">Questions</a>
-      <a class="btn btn-jaune btn-sm" href="#souscrire" data-cta="entete">Souscrire</a>
-    </nav>
+    <ul>
+        <li><a href="index.html">Abonnement</a></li>
+      <li><a href="#valeurs">La crèche</a></li>
+      <li><a href="#journee">Une journée</a></li>
+      <li><a href="#pedagogie">Pédagogie</a></li>
+      <li><a href="#parents">Les parents</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-peche">Réserver une visite</a>
   </div>
-</header>
-
-<!-- ====================== HERO ====================== -->
-<section class="hero" id="haut">
-  <div class="wrap hero-grille">
-
-    <div>
-      <p class="eyebrow">Forfait mobile sans engagement</p>
-      <h1>Le prix affiché est <mark>le prix payé</mark>.</h1>
-      <p class="accroche">
-        Pas de tarif qui double au bout d'un an, pas d'option activée sans vous.
-        Et si vous préférez en parler à quelqu'un, un conseiller vous attend dans votre bureau de poste.
-      </p>
-
-      <ul class="puces">
-        <li><span class="coche" aria-hidden="true">✓</span> Réseau 4G/5G couvrant 99 % de la population</li>
-        <li><span class="coche" aria-hidden="true">✓</span> Résiliable à tout moment, en trois clics</li>
-        <li><span class="coche" aria-hidden="true">✓</span> Assistance en bureau de poste, sans rendez-vous</li>
+</nav>
+ 
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="conteneur">
+      <div>
+        <h1>Ici, chaque enfant grandit à son rythme.</h1>
+        <p class="accroche">Hojo accueille les enfants de 0 à 3 ans dans un lieu doux, sûr et plein de découvertes, au cœur du 11e arrondissement de Paris.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-peche">Réserver une visite</a>
+          <a href="#journee" class="btn btn-contour">Voir une journée type</a>
+        </div>
+        <div class="hero-infos">
+          <div><strong>0 – 3 ans</strong><span>trois groupes d'âge</span></div>
+          <div><strong>1 pour 5</strong><span>adulte par enfant</span></div>
+          <div><strong>7h30 – 18h30</strong><span>du lundi au vendredi</span></div>
+        </div>
+      </div>
+ 
+      <div class="pousse-scene" aria-hidden="true">
+        <svg viewBox="0 0 500 525">
+          <circle class="galet" cx="265" cy="300" r="205" fill="#93C29D" opacity=".55" style="animation-delay:0s"/>
+          <circle class="galet" cx="120" cy="130" r="62" fill="#F2A585" style="animation-delay:.1s"/>
+          <circle class="galet" cx="440" cy="150" r="34" fill="#A9D3E0" style="animation-delay:.2s"/>
+          <circle class="galet" cx="420" cy="455" r="48" fill="#F5CD47" style="animation-delay:.3s"/>
+          <ellipse cx="260" cy="470" rx="130" ry="18" fill="#4A7A55" opacity=".18"/>
+          <path class="tige" d="M260 468 C258 400 262 330 260 250" stroke="#4A7A55" stroke-width="11" stroke-linecap="round" fill="none"/>
+          <path class="feuille g" d="M258 330C185 330 140 275 152 215C205 212 252 255 258 330Z" fill="#6FA97B"/>
+          <path class="feuille d" d="M262 330C335 330 380 275 368 215C315 212 268 255 262 330Z" fill="#7DB788"/>
+          <circle class="bourgeon" cx="260" cy="200" r="42" fill="#F2A585"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- VALEURS -->
+  <section class="valeurs" id="valeurs">
+    <div class="conteneur">
+      <h2>Ce qui nous guide</h2>
+      <p class="intro">Cinq valeurs simples, qu'on retrouve dans chaque geste de l'équipe, du matin jusqu'aux retrouvailles du soir.</p>
+      <div class="galets">
+        <div class="galet-valeur v1"><h3>Bienveillance</h3><p>Des mots doux, des gestes attentifs, une écoute de chaque émotion.</p></div>
+        <div class="galet-valeur v2"><h3>Confiance</h3><p>Des échanges quotidiens avec vous, en toute transparence.</p></div>
+        <div class="galet-valeur v3"><h3>Éveil</h3><p>Musique, nature, matières : de quoi nourrir la curiosité.</p></div>
+        <div class="galet-valeur v4"><h3>Pédagogie</h3><p>Une équipe formée aux approches Montessori et Pikler.</p></div>
+        <div class="galet-valeur v5"><h3>Rythme de l'enfant</h3><p>On dort, on mange et on joue quand on en a besoin.</p></div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- UNE JOURNÉE -->
+  <section class="journee" id="journee">
+    <div class="conteneur">
+      <h2>Une journée chez Hojo</h2>
+      <p class="intro">Choisissez un moment pour suivre le soleil et découvrir ce que vit votre enfant.</p>
+ 
+      <div class="onglets" role="tablist" aria-label="Moments de la journée" id="onglets"></div>
+ 
+      <div class="journee-grille">
+        <div class="ciel-carte" aria-hidden="true">
+          <svg viewBox="0 0 800 420" id="cielSvg">
+            <rect id="cielFond" width="800" height="420" fill="#FBE3D6"/>
+            <path id="trajet" d="M70 330 Q400 -90 730 330" fill="none" stroke="#33302E" stroke-opacity=".18" stroke-width="3" stroke-dasharray="2 12" stroke-linecap="round"/>
+            <g id="soleil">
+              <circle id="soleilCorps" r="36" fill="#F5CD47"/>
+              <g id="zzz" opacity="0" font-family="Quicksand" font-weight="700" fill="#33302E">
+                <text x="42" y="-26" font-size="22">z</text>
+                <text x="58" y="-46" font-size="17">z</text>
+                <text x="70" y="-62" font-size="13">z</text>
+              </g>
+            </g>
+            <path d="M0 330 C140 290 250 300 380 330 C520 362 650 300 800 318 V420 H0Z" fill="#93C29D"/>
+            <path d="M0 370 C180 345 330 380 480 368 C620 356 720 372 800 362 V420 H0Z" fill="#6FA97B"/>
+            <!-- petites pousses -->
+            <g transform="translate(150 318) scale(.9)"><use href="#picto" width="40" height="48" x="-20" y="-40"/></g>
+            <g transform="translate(560 330) scale(.7)"><use href="#picto" width="40" height="48" x="-20" y="-40"/></g>
+            <g transform="translate(660 312) scale(1.1)"><use href="#picto" width="40" height="48" x="-20" y="-40"/></g>
+          </svg>
+        </div>
+ 
+        <div class="moment" role="tabpanel" id="panneau" aria-live="polite">
+          <div class="moment-contenu" id="momentContenu">
+            <div class="moment-heure" id="mHeure">7h30</div>
+            <h3 id="mTitre"></h3>
+            <p id="mTexte"></p>
+          </div>
+          <p class="moment-note" id="mNote"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- PÉDAGOGIE -->
+  <section class="pedagogie" id="pedagogie">
+    <div class="conteneur">
+      <div>
+        <h2>Apprendre en jouant, sans jamais presser</h2>
+        <p class="intro">Nous accompagnons chaque enfant dans ses découvertes, sans le devancer. L'adulte observe, propose, rassure, et laisse l'enfant faire par lui-même.</p>
+        <figure class="citation">
+          <blockquote>« Un enfant qui se sent en sécurité ose tout essayer. Notre premier travail, c'est de lui donner cette sécurité. »</blockquote>
+          <figcaption><b>Marie Dupont</b>, directrice de la crèche Hojo</figcaption>
+        </figure>
+      </div>
+ 
+      <ul class="approches">
+        <li>
+          <div class="pastille" style="background:var(--sauge)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#33302E" stroke-width="2" stroke-linecap="round"><path d="M12 21V11"/><path d="M12 14c-4 0-6-3-5.5-6 3 0 5.5 2 5.5 6Z"/><path d="M12 12c3.5 0 5.5-2.5 5-5.5-3 0-5 2-5 5.5Z"/></svg>
+          </div>
+          <div><h3>Motricité libre</h3><p>Des espaces sécurisés pour ramper, grimper et marcher à son propre rythme.</p></div>
+        </li>
+        <li>
+          <div class="pastille" style="background:var(--ciel)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#33302E" stroke-width="2" stroke-linecap="round"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>
+          </div>
+          <div><h3>Éveil sensoriel et musical</h3><p>Comptines, instruments, sable, eau et matières naturelles à toucher.</p></div>
+        </li>
+        <li>
+          <div class="pastille" style="background:var(--soleil)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#33302E" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"/></svg>
+          </div>
+          <div><h3>Dehors tous les jours</h3><p>Un jardin et un petit potager, pour sentir la pluie, le vent et les saisons.</p></div>
+        </li>
+        <li>
+          <div class="pastille" style="background:var(--peche)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#33302E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v10H9l-5 4Z"/></svg>
+          </div>
+          <div><h3>Langage et signes</h3><p>Lecture d'albums et quelques signes pour communiquer avant de savoir parler.</p></div>
+        </li>
       </ul>
     </div>
-
-    <!-- Configurateur : élément interactif principal de la page -->
-    <div class="config" id="offre">
-      <div class="config-haut">
-        <h2>Composez votre forfait</h2>
-        <span class="badge">Sans engagement</span>
+  </section>
+ 
+  <!-- PARENTS -->
+  <section class="parents" id="parents">
+    <div class="conteneur">
+      <h2>Ce qu'en disent les parents</h2>
+      <div class="temoignages">
+        <article class="temoignage">
+          <p>« Le cahier de transmission du soir, c'est notre petit rituel. On sait exactement comment s'est passée la journée de Léon. »</p>
+          <footer><div class="avatar" style="background:var(--sauge)">CA</div><div><b>Camille</b><span>maman de Léon, 14 mois</span></div></footer>
+        </article>
+        <article class="temoignage">
+          <p>« L'adaptation s'est faite sur deux semaines, sans jamais brusquer Inès. Aujourd'hui elle court dire bonjour à l'équipe. »</p>
+          <footer><div class="avatar" style="background:var(--peche)">KM</div><div><b>Karim</b><span>papa d'Inès, 2 ans</span></div></footer>
+        </article>
+        <article class="temoignage">
+          <p>« Ce qui nous a convaincus : ici, on ne réveille pas un bébé qui dort. Ça dit tout du respect de l'enfant. »</p>
+          <footer><div class="avatar" style="background:var(--ciel)">ÉL</div><div><b>Élise</b><span>maman de Nour, 8 mois</span></div></footer>
+        </article>
       </div>
-
-      <div class="champ-titre">
-        <label for="curseur">Data incluse</label>
-        <b id="valeurData">100 Go</b>
-      </div>
-      <input type="range" id="curseur" min="0" max="3" step="1" value="2"
-             aria-describedby="aideData" list="paliers">
-      <datalist id="paliers"><option value="0"><option value="1"><option value="2"><option value="3"></datalist>
-      <div class="graduations" aria-hidden="true">
-        <span>5 Go</span><span>20 Go</span><span>100 Go</span><span>200 Go</span>
-      </div>
-      <p id="aideData" class="mention" style="text-align:left;margin-top:10px">
-        Au-delà, le débit est réduit. Vous n'êtes jamais facturé de hors-forfait sans accord.
-      </p>
-
-      <div class="bascule" role="group" aria-label="Durée d'engagement">
-        <button type="button" id="btnLibre" aria-pressed="true">Sans engagement</button>
-        <button type="button" id="btnEngage" aria-pressed="false">12 mois &nbsp;−2 €</button>
-      </div>
-
-      <div class="prix-bloc">
-        <div class="prix">
-          <span class="montant" id="montant">12,99 €</span>
-          <span class="par">/ mois</span>
+    </div>
+  </section>
+<!-- PORTES OUVERTES -->
+  <section class="portes">
+    <div class="conteneur">
+      <div class="portes-bloc">
+        <div>
+          <h2>Journée portes ouvertes</h2>
+          <p>Venez visiter les espaces, rencontrer l'équipe et poser toutes vos questions. Les enfants sont les bienvenus.</p>
         </div>
-        <ul class="prix-detail">
-          <li><span>Forfait <b id="libelleForfait">100 Go</b></span> <b id="ligneForfait">12,99 €</b></li>
-          <li><span>Appels, SMS et MMS illimités</span> <b>Inclus</b></li>
-          <li><span>Frais de mise en service</span> <b>0 €</b></li>
-          <li class="total"><span>Total mensuel, tout compris</span> <b id="ligneTotal">12,99 €</b></li>
+        <div class="portes-date">
+          <div class="mois">Samedi</div>
+          <div class="jour">10</div>
+          <div class="mois">octobre</div>
+          <div class="heures">de 10h à 17h</div>
+          <a href="#contact" class="btn btn-contour">Je m'inscris</a>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="conteneur">
+      <div>
+        <h2>Venez nous rencontrer</h2>
+        <p class="intro">Chaque inscription commence par une visite. Laissez-nous vos coordonnées, nous vous rappelons pour fixer un rendez-vous.</p>
+        <ul class="coord">
+          <li><span>Adresse</span><div>12 rue des Lilas, 75011 Paris</div></li>
+          <li><span>Téléphone</span><a href="tel:+33123456789">01 23 45 67 89</a></li>
+          <li><span>E-mail</span><a href="mailto:bonjour@hojo.fr">bonjour@hojo.fr</a></li>
+          <li><span>Horaires</span><div>Du lundi au vendredi, de 7h30 à 18h30</div></li>
         </ul>
-        <a class="btn btn-jaune" href="#souscrire" id="ctaPrincipal" data-cta="configurateur">
-          Souscrire ce forfait
-        </a>
-        <p class="mention">Carte SIM expédiée sous 48 h · Conservez votre numéro gratuitement</p>
       </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ====================== PREUVE ====================== -->
-<section class="preuve">
-  <div class="wrap preuve-grille">
-    <div class="stat reveal">
-      <div class="nombre" data-compteur="17000" data-suffixe="">0</div>
-      <div class="libelle">bureaux de poste pour vous accompagner</div>
-    </div>
-    <div class="stat reveal">
-      <div class="nombre" data-compteur="99" data-suffixe=" %">0</div>
-      <div class="libelle">de la population couverte en 4G</div>
-    </div>
-    <div class="stat reveal">
-      <div class="nombre" data-compteur="1" data-decimal="true" data-prefixe="" data-suffixe=",7 M">0</div>
-      <div class="libelle">de clients nous font déjà confiance</div>
-    </div>
-  </div>
-</section>
-
-<!-- ====================== POURQUOI ====================== -->
-<section class="section" id="pourquoi">
-  <div class="wrap">
-    <div class="entete-section reveal">
-      <p class="eyebrow">Pourquoi nous choisir</p>
-      <h2>Un opérateur qui a pignon sur rue</h2>
-      <p>Là où les opérateurs en ligne vous renvoient vers un formulaire, nous avons un guichet dans votre commune.</p>
-    </div>
-
-    <div class="cartes">
-      <div class="carte reveal">
-        <div class="pastille" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>
+ 
+      <form class="formulaire" id="formVisite" novalidate>
+        <h3>Demander une visite</h3>
+        <div class="champs-duo">
+          <div class="champ"><label for="nom">Votre nom</label><input id="nom" name="nom" autocomplete="name" required></div>
+          <div class="champ"><label for="tel">Téléphone</label><input id="tel" name="tel" type="tel" autocomplete="tel" required></div>
         </div>
-        <h3>Un conseiller près de chez vous</h3>
-        <p>Un problème de facture ou de SIM ? Poussez la porte de votre bureau de poste, sans rendez-vous.</p>
-      </div>
-      <div class="carte reveal">
-        <div class="pastille" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-        </div>
-        <h3>Un prix qui ne bouge pas</h3>
-        <p>Le tarif de votre première facture est celui de la trentième. Aucune hausse au bout de douze mois.</p>
-      </div>
-      <div class="carte reveal">
-        <div class="pastille" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-        </div>
-        <h3>Vos données restent en France</h3>
-        <p>Hébergement et service client en France, sous la responsabilité d'un groupe à capitaux publics.</p>
-      </div>
-      <div class="carte reveal">
-        <div class="pastille" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M4 4h16v12H5.2L4 18.5V4z"/><path d="M8 9h8M8 12.5h5"/></svg>
-        </div>
-        <h3>Une assistance qui répond</h3>
-        <p>Par téléphone, en boutique ou par messagerie. Sans passer douze minutes dans un menu vocal.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ====================== RÉSEAU ====================== -->
-<section class="section section-gris" id="reseau">
-  <div class="wrap reseau">
-    <div class="reveal">
-      <p class="eyebrow">Le réseau physique</p>
-      <h2>Souscrire en ligne, être aidé en vrai</h2>
-      <p style="color:var(--gris-texte);margin-top:16px;font-size:1.03rem">
-        Vous démarrez ici, en trois minutes. Et si quelque chose coince — un transfert de numéro,
-        une facture à comprendre, un téléphone à configurer — vous n'êtes pas seul face à un chat automatique.
-      </p>
-      <ul class="puces" style="margin-top:24px">
-        <li><span class="coche" aria-hidden="true">✓</span> Activation de la ligne au guichet si vous le souhaitez</li>
-        <li><span class="coche" aria-hidden="true">✓</span> Récupération de la carte SIM en bureau, sans attendre le courrier</li>
-        <li><span class="coche" aria-hidden="true">✓</span> Aide au transfert de vos contacts et de vos données</li>
-      </ul>
-    </div>
-
-    <div class="carte-guichet reveal">
-      <h3>Trouver le bureau le plus proche</h3>
-      <p>Indiquez votre code postal : nous vous montrons les bureaux qui proposent le service mobile et leurs horaires.</p>
-      <div style="display:flex;gap:10px;margin-top:22px;position:relative;z-index:1;flex-wrap:wrap">
-        <label for="cp" style="position:absolute;left:-9999px">Code postal</label>
-        <input id="cp" type="text" inputmode="numeric" maxlength="5" placeholder="Code postal"
-               style="flex:1;min-width:140px;padding:14px;border:0;border-radius:9px;font-family:inherit;font-size:1rem">
-        <button class="btn btn-jaune" type="button" id="btnCp">Rechercher</button>
-      </div>
-      <p id="resultatCp" style="margin-top:14px;font-weight:700;color:var(--jaune);position:relative;z-index:1"></p>
-    </div>
-  </div>
-</section>
-
-<!-- ====================== FAQ ====================== -->
-<section class="section" id="questions">
-  <div class="wrap">
-    <div class="entete-section reveal" style="margin-left:auto;margin-right:auto;text-align:center">
-      <p class="eyebrow">Questions fréquentes</p>
-      <h2>Ce que les clients demandent avant de souscrire</h2>
-    </div>
-
-    <div class="faq">
-      <div class="q">
-        <button type="button" aria-expanded="false">Puis-je garder mon numéro ?<span class="signe" aria-hidden="true">+</span></button>
-        <div class="reponse"><p>Oui, et c'est gratuit. Il vous faut votre code RIO, obtenu en appelant le 3179 depuis votre ligne actuelle. Nous nous occupons du reste, et votre ancienne ligne est résiliée automatiquement.</p></div>
-      </div>
-      <div class="q">
-        <button type="button" aria-expanded="false">Le prix va-t-il augmenter après un an ?<span class="signe" aria-hidden="true">+</span></button>
-        <div class="reponse"><p>Non. Le tarif affiché est le tarif définitif. Aucune hausse automatique n'est prévue au terme d'une période promotionnelle, parce qu'il n'y a pas de période promotionnelle.</p></div>
-      </div>
-      <div class="q">
-        <button type="button" aria-expanded="false">Que se passe-t-il si je dépasse mon enveloppe data ?<span class="signe" aria-hidden="true">+</span></button>
-        <div class="reponse"><p>Le débit est réduit jusqu'à la fin du mois, mais vous n'êtes jamais facturé sans l'avoir accepté. Vous recevez une alerte à 80 % de votre consommation.</p></div>
-      </div>
-      <div class="q">
-        <button type="button" aria-expanded="false">Sous combien de temps ma ligne est-elle active ?<span class="signe" aria-hidden="true">+</span></button>
-        <div class="reponse"><p>La carte SIM part sous 48 heures ouvrées. En la retirant directement en bureau de poste, la ligne peut être active le jour même.</p></div>
-      </div>
-      <div class="q">
-        <button type="button" aria-expanded="false">Comment résilier ?<span class="signe" aria-hidden="true">+</span></button>
-        <div class="reponse"><p>Depuis votre espace client, en trois clics, sans justificatif ni frais. La résiliation prend effet à la fin du mois en cours.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ====================== SOUSCRIPTION ====================== -->
-<section class="section section-gris" id="souscrire">
-  <div class="wrap form-grille">
-    <div class="reveal">
-      <p class="eyebrow">Dernière étape</p>
-      <h2>Trois minutes, et c'est réglé</h2>
-      <p style="color:var(--gris-texte);margin-top:16px;font-size:1.03rem">
-        Nous vous demandons le strict nécessaire pour préparer votre ligne.
-        Aucune pièce d'identité n'est requise à ce stade.
-      </p>
-      <ul class="puces" style="margin-top:24px">
-        <li><span class="coche" aria-hidden="true">1</span> Vos coordonnées</li>
-        <li><span class="coche" aria-hidden="true">2</span> Le choix de votre forfait, déjà rempli</li>
-        <li><span class="coche" aria-hidden="true">3</span> Confirmation par courriel</li>
-      </ul>
-    </div>
-
-    <div class="formulaire">
-      <div class="recap">
-        <span>Votre sélection</span>
-        <b id="recapTexte">100 Go sans engagement — 12,99 €/mois</b>
-      </div>
-
-      <form id="formulaire" novalidate>
-        <div class="ligne">
+        <div class="champ"><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+        <div class="champs-duo">
           <div class="champ">
-            <label for="prenom">Prénom</label>
-            <input id="prenom" name="prenom" type="text" autocomplete="given-name" required>
-            <span class="erreur">Indiquez votre prénom.</span>
+            <label for="age">Âge de l'enfant</label>
+            <select id="age" name="age" required>
+              <option value="">Choisir</option>
+              <option>Pas encore né</option>
+              <option>0 à 12 mois</option>
+              <option>1 à 2 ans</option>
+              <option>2 à 3 ans</option>
+            </select>
           </div>
-          <div class="champ">
-            <label for="nom">Nom</label>
-            <input id="nom" name="nom" type="text" autocomplete="family-name" required>
-            <span class="erreur">Indiquez votre nom.</span>
-          </div>
+          <div class="champ"><label for="entree">Entrée souhaitée</label><input id="entree" name="entree" type="month"></div>
         </div>
-        <div class="champ">
-          <label for="courriel">Adresse électronique</label>
-          <input id="courriel" name="courriel" type="email" autocomplete="email" placeholder="prenom.nom@exemple.fr" required>
-          <span class="erreur">Cette adresse ne semble pas valide.</span>
-        </div>
-        <div class="champ">
-          <label for="tel">Téléphone</label>
-          <input id="tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" placeholder="06 12 34 56 78" required>
-          <span class="erreur">Indiquez un numéro à 10 chiffres.</span>
-        </div>
-
-        <!-- Champs masqués : origine du trafic, repris dans GA4 et le CRM -->
-        <input type="hidden" name="utm_source" id="utm_source">
-        <input type="hidden" name="utm_medium" id="utm_medium">
-        <input type="hidden" name="utm_campaign" id="utm_campaign">
-        <input type="hidden" name="forfait" id="champForfait">
-
-        <button class="btn btn-jaune" type="submit" style="width:100%">Valider ma souscription</button>
-        <p class="mention">
-          Vos données servent uniquement à traiter votre demande. Vous pouvez les consulter,
-          les corriger ou les supprimer à tout moment.
-        </p>
+        <div class="champ"><label for="msg">Message (facultatif)</label><textarea id="msg" name="msg" rows="3"></textarea></div>
+        <button type="submit" class="btn btn-peche">Envoyer ma demande</button>
+        <p class="statut" id="statut" role="status"></p>
       </form>
-
-      <div class="succes" id="succes" role="status">
-        Demande enregistrée. Un courriel de confirmation part à l'instant vers l'adresse indiquée.
-      </div>
     </div>
-  </div>
-</section>
-
-<!-- ====================== PIED DE PAGE ====================== -->
+  </section>
+</main>
+ 
 <footer class="pied">
-  <div class="wrap">
-    <div class="pied-haut">
-      <div style="max-width:280px">
-        <div class="logo" style="margin-bottom:14px">
-            <img src="pi.png" alt="La Poste Mobile"
-           onerror="this.remove();document.getElementById('logoSub').style.display='flex'">
-        </div>
-        <p>Opérateur mobile du Groupe La Poste, présent dans 17 000 bureaux en France.</p>
-      </div>
-      <div>
-        <h4>L'offre</h4>
-        <a href="#offre">Forfaits</a><a href="#reseau">Bureaux de poste</a><a href="#questions">Questions fréquentes</a>
-      </div>
-      <div>
-        <h4>Assistance</h4>
-        <a href="#">Espace client</a><a href="#">Nous contacter</a><a href="#">Suivi de commande</a>
-      </div>
-      <div>
-        <h4>Informations</h4>
-        <a href="#">Mentions légales</a><a href="#">Données personnelles</a><a href="#">Gestion des cookies</a>
-      </div>
-    </div>
-    <div class="pied-bas">
-      Page réalisée à des fins pédagogiques dans le cadre d'un travail pratique étudiant.
-      Les tarifs, chiffres et engagements présentés sont fictifs et n'engagent pas le Groupe La Poste.
-      Les marques et le logotype cités appartiennent à leurs titulaires respectifs.
-    </div>
+  <div class="conteneur">
+    <a href="#" class="logo" aria-label="Hojo, retour en haut">
+      <svg><use href="#picto"/></svg>
+      <span class="logo-texte"><b>Hojo</b><span>crèche bienveillante</span></span>
+    </a>
+    <p>© 2026 Hojo</p>
+    <p><a href="#">Mentions légales</a>&nbsp;&nbsp;&nbsp;<a href="#">Confidentialité</a></p>
   </div>
 </footer>
-
-<!-- ====================== BARRE MOBILE ====================== -->
-<div class="barre-mobile">
-  <div class="p"><span id="prixMobile">12,99 €</span><small id="libelleMobile">100 Go · sans engagement</small></div>
-  <a class="btn btn-jaune btn-sm" href="#souscrire" data-cta="barre-mobile">Souscrire</a>
-</div>
-
-<!-- ====================== CONSOLE GA4 ====================== -->
-<button class="ga-ouvrir" id="gaOuvrir" aria-expanded="false" aria-controls="gaPanneau">
-  Événements GA4 <span id="gaCompte">(0)</span>
-</button>
-<div class="ga-panneau" id="gaPanneau">
-  <div class="ga-tete">
-    <strong>dataLayer — plan de marquage</strong>
-    <button type="button" id="gaFermer" aria-label="Fermer le panneau">✕</button>
-  </div>
-  <div class="ga-corps" id="gaCorps">
-    <p class="ga-vide">Interagissez avec la page : les événements envoyés à Google Analytics s'affichent ici.</p>
-  </div>
-</div>
-
+ 
 <script>
-try{
-/* =========================================================================
-   1. PLAN DE MARQUAGE GA4
-   Chaque interaction pousse un événement dans window.dataLayer, exactement
-   comme le ferait Google Tag Manager en production. Le panneau les affiche
-   pour rendre le plan de mesure visible pendant la soutenance.
-   ========================================================================= */
-window.dataLayer = window.dataLayer || [];
-const gaCorps = document.getElementById('gaCorps');
-const gaCompte = document.getElementById('gaCompte');
-let nbEvenements = 0;
+  // Les moments de la journée
+  const moments = [
+    { h: 7.5,  label: "7h30",  titre: "Accueil en douceur", ciel: "#FBE3D6", soleil: "#F2A585",
+      texte: "Vous prenez le temps de transmettre les nouvelles de la nuit. Votre enfant retrouve son doudou et son coin préféré.",
+      note: "Pas d'horaire d'arrivée imposé avant 9h30." },
+    { h: 9.5,  label: "9h30",  titre: "Temps d'éveil", ciel: "#D6EBF1", soleil: "#F5CD47",
+      texte: "Peinture, musique, parcours de motricité : chaque enfant choisit l'activité qui l'attire, en petit groupe.",
+      note: "Des ateliers adaptés à chaque groupe d'âge." },
+    { h: 10.5, label: "10h30", titre: "Dehors, au jardin", ciel: "#A9D3E0", soleil: "#F5CD47",
+      texte: "On arrose le potager, on observe les escargots, on court sur l'herbe. Et quand il pleut, on met les bottes.",
+      note: "Sortie quotidienne, quelle que soit la météo." },
+    { h: 11.5, label: "11h30", titre: "Le repas", ciel: "#A9D3E0", soleil: "#F5CD47",
+      texte: "Des repas cuisinés sur place avec des produits bio et locaux. Les plus grands se servent seuls, les bébés mangent à leur heure.",
+      note: "Menus de la semaine envoyés chaque lundi." },
+    { h: 13,   label: "13h",   titre: "La sieste", ciel: "#C4D6DE", soleil: "#FBE9A8", dort: true,
+      texte: "Chacun dort quand il en a besoin, dans son propre lit. On ne réveille jamais un enfant qui dort.",
+      note: "Des dortoirs calmes et une lumière tamisée." },
+    { h: 15.5, label: "15h30", titre: "Le goûter", ciel: "#F8E6A8", soleil: "#F5CD47",
+      texte: "Fruits de saison, laitages, pain frais. Un moment calme pour se retrouver autour de la table après la sieste.",
+      note: "Allergies et régimes particuliers pris en compte." },
+    { h: 16.5, label: "16h30", titre: "Jeux libres et comptines", ciel: "#FBE3D6", soleil: "#F2A585",
+      texte: "Construction, dînette, lecture d'albums. La journée ralentit doucement avant l'arrivée des parents.",
+      note: "Un temps chanté chaque jour avec toute la crèche." },
+    { h: 18.5, label: "18h30", titre: "Les retrouvailles", ciel: "#F5C4AA", soleil: "#F2A585",
+      texte: "L'équipe vous raconte la journée : les repas, la sieste, les petites victoires. Et votre enfant vous montre ses trésors.",
+      note: "Un compte rendu quotidien, oral et écrit." }
+  ];
 
-function pousser(nom, parametres){
-  const evenement = Object.assign({event:nom}, parametres || {});
-  window.dataLayer.push(evenement);
-  nbEvenements++;
-  gaCompte.textContent = '(' + nbEvenements + ')';
-
-  const vide = gaCorps.querySelector('.ga-vide');
-  if (vide) vide.remove();
-
-  const heure = new Date().toLocaleTimeString('fr-FR');
-  const ligne = document.createElement('div');
-  ligne.className = 'ga-ligne';
-  const details = Object.keys(evenement)
-    .filter(c => c !== 'event')
-    .map(c => c + ': ' + evenement[c])
-    .join(' · ');
-  ligne.innerHTML = '<b>' + nom + '</b><span>' + heure + (details ? ' — ' + details : '') + '</span>';
-  gaCorps.prepend(ligne);
-}
-
-document.getElementById('gaOuvrir').addEventListener('click', function(){
-  const panneau = document.getElementById('gaPanneau');
-  const ouvert = panneau.classList.toggle('visible');
-  this.setAttribute('aria-expanded', ouvert);
-});
-document.getElementById('gaFermer').addEventListener('click', function(){
-  document.getElementById('gaPanneau').classList.remove('visible');
-  document.getElementById('gaOuvrir').setAttribute('aria-expanded','false');
-});
-
-/* =========================================================================
-   2. CONFIGURATEUR DE FORFAIT
-   ========================================================================= */
-const FORFAITS = [
-  {data:'5 Go',   prix:4.99},
-  {data:'20 Go',  prix:8.99},
-  {data:'100 Go', prix:12.99},
-  {data:'200 Go', prix:19.99}
-];
-const REMISE_ENGAGEMENT = 2;
-
-const curseur      = document.getElementById('curseur');
-const valeurData   = document.getElementById('valeurData');
-const montant      = document.getElementById('montant');
-const libelleForf  = document.getElementById('libelleForfait');
-const ligneForfait = document.getElementById('ligneForfait');
-const ligneTotal   = document.getElementById('ligneTotal');
-const recapTexte   = document.getElementById('recapTexte');
-const prixMobile   = document.getElementById('prixMobile');
-const libelleMobile= document.getElementById('libelleMobile');
-const champForfait = document.getElementById('champForfait');
-const btnLibre     = document.getElementById('btnLibre');
-const btnEngage    = document.getElementById('btnEngage');
-
-let engage = false;
-
-function euros(v){ return v.toFixed(2).replace('.', ',') + ' €'; }
-
-function prixCourant(){
-  const base = FORFAITS[curseur.value].prix;
-  return engage ? Math.max(base - REMISE_ENGAGEMENT, 0) : base;
-}
-
-function rafraichir(){
-  const forfait = FORFAITS[curseur.value];
-  const prix = prixCourant();
-  const duree = engage ? 'avec engagement 12 mois' : 'sans engagement';
-
-  valeurData.textContent   = forfait.data;
-  libelleForf.textContent  = forfait.data;
-  montant.textContent      = euros(prix);
-  ligneForfait.textContent = euros(prix);
-  ligneTotal.textContent   = euros(prix);
-  recapTexte.textContent   = forfait.data + ' ' + duree + ' — ' + euros(prix) + '/mois';
-  prixMobile.textContent   = euros(prix);
-  libelleMobile.textContent= forfait.data + ' · ' + (engage ? '12 mois' : 'sans engagement');
-  champForfait.value       = forfait.data + ' / ' + duree + ' / ' + euros(prix);
-
-  // Teinte de la piste du curseur à gauche du curseur
-  const pourcent = (curseur.value / (FORFAITS.length - 1)) * 100;
-  curseur.style.background =
-    'linear-gradient(90deg, var(--bleu) 0%, var(--bleu) ' + pourcent + '%, var(--gris-bord) ' + pourcent + '%)';
-}
-
-let minuteur;
-curseur.addEventListener('input', function(){
-  rafraichir();
-  clearTimeout(minuteur);
-  minuteur = setTimeout(function(){
-    const f = FORFAITS[curseur.value];
-    pousser('select_item', {item_name:'Forfait ' + f.data, price:prixCourant()});
-  }, 400);
-});
-
-function definirEngagement(valeur){
-  engage = valeur;
-  btnLibre.setAttribute('aria-pressed', String(!valeur));
-  btnEngage.setAttribute('aria-pressed', String(valeur));
-  rafraichir();
-  pousser('select_promotion', {promotion_name: valeur ? 'Engagement 12 mois' : 'Sans engagement'});
-}
-btnLibre.addEventListener('click', function(){ definirEngagement(false); });
-btnEngage.addEventListener('click', function(){ definirEngagement(true); });
-
-rafraichir();
-
-/* =========================================================================
-   3. ÉVÉNEMENTS DE PARCOURS
-   ========================================================================= */
-document.querySelectorAll('[data-cta]').forEach(function(lien){
-  lien.addEventListener('click', function(){
-    const f = FORFAITS[curseur.value];
-    pousser('begin_checkout', {
-      emplacement: lien.dataset.cta,
-      item_name: 'Forfait ' + f.data,
-      value: prixCourant(),
-      currency: 'EUR'
+  const trajet = document.getElementById("trajet");
+  const soleil = document.getElementById("soleil");
+  const soleilCorps = document.getElementById("soleilCorps");
+  const cielFond = document.getElementById("cielFond");
+  const zzz = document.getElementById("zzz");
+  const onglets = document.getElementById("onglets");
+  const contenu = document.getElementById("momentContenu");
+  const longueur = trajet.getTotalLength();
+  const hMin = 7.5, hMax = 18.5;
+  let actif = 0;
+ 
+  moments.forEach((m, i) => {
+    const b = document.createElement("button");
+    b.className = "onglet";
+    b.type = "button";
+    b.setAttribute("role","tab");
+    b.id = "onglet-" + i;
+    b.setAttribute("aria-controls", "panneau");
+    b.textContent = m.label;
+    b.addEventListener("click", () => choisir(i));
+    onglets.appendChild(b);
+  });
+ 
+  onglets.addEventListener("keydown", e => {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    e.preventDefault();
+    const suivant = (actif + (e.key === "ArrowRight" ? 1 : -1) + moments.length) % moments.length;
+    choisir(suivant);
+    onglets.children[suivant].focus();
+  });
+ 
+  function choisir(i, premier) {
+    actif = i;
+    const m = moments[i];
+    [...onglets.children].forEach((b, j) => {
+      b.setAttribute("aria-selected", j === i);
+      b.tabIndex = j === i ? 0 : -1;
     });
-  });
-});
-
-/* =========================================================================
-   4. RECHERCHE DE BUREAU
-   ========================================================================= */
-document.getElementById('btnCp').addEventListener('click', function(){
-  const champ = document.getElementById('cp');
-  const sortie = document.getElementById('resultatCp');
-  const cp = champ.value.trim();
-  if (!/^\d{5}$/.test(cp)) {
-    sortie.textContent = 'Saisissez un code postal à 5 chiffres.';
-    return;
+    document.getElementById("panneau").setAttribute("aria-labelledby", "onglet-" + i);
+ 
+    const t = (m.h - hMin) / (hMax - hMin);
+    const p = trajet.getPointAtLength(t * longueur);
+    soleil.style.transform = `translate(${p.x}px, ${p.y}px)`;
+    soleilCorps.setAttribute("fill", m.soleil);
+    cielFond.setAttribute("fill", m.ciel);
+    zzz.setAttribute("opacity", m.dort ? 1 : 0);
+ 
+    const maj = () => {
+      document.getElementById("mHeure").textContent = m.label;
+      document.getElementById("mTitre").textContent = m.titre;
+      document.getElementById("mTexte").textContent = m.texte;
+      document.getElementById("mNote").textContent = m.note;
+      contenu.classList.remove("change");
+    };
+    if (premier) { maj(); return; }
+    contenu.classList.add("change");
+    setTimeout(maj, 200);
   }
-  // En production : appel au service de localisation des points de contact.
-  const nb = 2 + (parseInt(cp.slice(-2), 10) % 6);
-  sortie.textContent = nb + ' bureaux proposent le service mobile autour du ' + cp + '.';
-  pousser('search', {search_term: cp, resultats: nb});
-});
-
-/* =========================================================================
-   5. FAQ ACCORDÉON
-   ========================================================================= */
-document.querySelectorAll('.q button').forEach(function(bouton){
-  bouton.addEventListener('click', function(){
-    const reponse = bouton.nextElementSibling;
-    const ouvert = bouton.getAttribute('aria-expanded') === 'true';
-
-    document.querySelectorAll('.q button').forEach(function(autre){
-      autre.setAttribute('aria-expanded','false');
-      autre.nextElementSibling.style.maxHeight = null;
-    });
-
-    if (!ouvert) {
-      bouton.setAttribute('aria-expanded','true');
-      reponse.style.maxHeight = reponse.scrollHeight + 'px';
-      pousser('faq_ouverte', {question: bouton.textContent.replace('+','').trim()});
+  choisir(0, true);
+ 
+  // Formulaire
+  const form = document.getElementById("formVisite");
+  const statut = document.getElementById("statut");
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const manquant = [...form.querySelectorAll("[required]")].find(c => !c.value.trim() || !c.checkValidity());
+    if (manquant) {
+      statut.style.color = "#B4512F";
+      const nom = form.querySelector(`label[for="${manquant.id}"]`).textContent.toLowerCase();
+      statut.textContent = `Merci de renseigner le champ « ${nom} ».`;
+      manquant.focus();
+      return;
     }
+    statut.style.color = "";
+    statut.textContent = "Demande envoyée. Nous vous rappelons sous 48 heures pour fixer la visite.";
+    form.reset();
   });
-});
-
-/* =========================================================================
-   6. FORMULAIRE
-   ========================================================================= */
-const formulaire = document.getElementById('formulaire');
-
-function verifier(champ){
-  const bloc = champ.closest('.champ');
-  let valide = champ.value.trim().length > 0;
-  if (champ.type === 'email')  valide = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(champ.value.trim());
-  if (champ.type === 'tel')    valide = champ.value.replace(/\D/g,'').length === 10;
-  bloc.classList.toggle('invalide', !valide);
-  champ.setAttribute('aria-invalid', String(!valide));
-  return valide;
-}
-
-formulaire.querySelectorAll('input[required]').forEach(function(champ){
-  champ.addEventListener('blur', function(){ verifier(champ); });
-  champ.addEventListener('input', function(){
-    if (champ.closest('.champ').classList.contains('invalide')) verifier(champ);
-  });
-});
-
-formulaire.addEventListener('submit', function(e){
-  e.preventDefault();
-  const champs = Array.from(formulaire.querySelectorAll('input[required]'));
-  const valide = champs.map(verifier).every(Boolean);
-
-  if (!valide) {
-    const premier = formulaire.querySelector('.champ.invalide input');
-    if (premier) premier.focus();
-    pousser('form_erreur', {champs_invalides: champs.filter(function(c){
-      return c.closest('.champ').classList.contains('invalide');
-    }).length});
-    return;
-  }
-
-  const f = FORFAITS[curseur.value];
-  pousser('generate_lead', {
-    item_name: 'Forfait ' + f.data,
-    value: prixCourant(),
-    currency: 'EUR',
-    utm_source: document.getElementById('utm_source').value || '(direct)'
-  });
-  pousser('purchase', {
-    transaction_id: 'TP-' + Date.now(),
-    value: prixCourant(),
-    currency: 'EUR',
-    items: 'Forfait ' + f.data
-  });
-
-  formulaire.style.display = 'none';
-  document.getElementById('succes').classList.add('visible');
-  document.getElementById('succes').focus();
-});
-
-/* =========================================================================
-   7. CAPTURE DES PARAMÈTRES UTM
-   Sans ce relevé, le CAC par canal reste incalculable.
-   ========================================================================= */
-(function(){
-  const params = new URLSearchParams(window.location.search);
-  ['utm_source','utm_medium','utm_campaign'].forEach(function(cle){
-    const valeur = params.get(cle);
-    if (valeur) document.getElementById(cle).value = valeur;
-  });
-  pousser('page_view', {
-    page_title: document.title,
-    utm_source: params.get('utm_source') || '(direct)',
-    utm_medium: params.get('utm_medium') || '(none)'
-  });
-})();
-
-/* =========================================================================
-   8. COMPTEURS ET RÉVÉLATION AU DÉFILEMENT
-   ========================================================================= */
-const mouvementReduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-function animerCompteur(element){
-  const cible = parseFloat(element.dataset.compteur);
-  const suffixe = element.dataset.suffixe || '';
-  const decimal = element.dataset.decimal === 'true';
-
-  if (mouvementReduit) {
-    element.textContent = (decimal ? cible.toFixed(1) : cible.toLocaleString('fr-FR')) + suffixe;
-    return;
-  }
-  const duree = 1400;
-  const depart = performance.now();
-  function etape(maintenant){
-    const t = Math.min((maintenant - depart) / duree, 1);
-    const adouci = 1 - Math.pow(1 - t, 3);
-    const valeur = cible * adouci;
-    element.textContent = (decimal ? valeur.toFixed(1) : Math.round(valeur).toLocaleString('fr-FR')) + suffixe;
-    if (t < 1) requestAnimationFrame(etape);
-  }
-  requestAnimationFrame(etape);
-}
-
-const observateur = new IntersectionObserver(function(entrees){
-  entrees.forEach(function(entree){
-    if (!entree.isIntersecting) return;
-    entree.target.classList.add('vu');
-    const compteur = entree.target.querySelector('[data-compteur]');
-    if (compteur && !compteur.dataset.fait) {
-      compteur.dataset.fait = '1';
-      animerCompteur(compteur);
-    }
-    observateur.unobserve(entree.target);
-  });
-}, {threshold:.2});
-
-document.querySelectorAll('.reveal').forEach(function(el){ observateur.observe(el); });
-
-/* Profondeur de défilement — utile pour mesurer l'engagement dans GA4 */
-let seuilsAtteints = {};
-window.addEventListener('scroll', function(){
-  const profondeur = (window.scrollY + window.innerHeight) / document.body.scrollHeight * 100;
-  [50, 90].forEach(function(seuil){
-    if (profondeur >= seuil && !seuilsAtteints[seuil]) {
-      seuilsAtteints[seuil] = true;
-      pousser('scroll', {percent_scrolled: seuil});
-    }
-  });
-}, {passive:true});
-}catch(err){
-  /* Une defaillance du script ne doit jamais masquer le contenu de la page. */
-  console.error('Landing — erreur JavaScript :', err);
-  document.documentElement.classList.remove('js');
-}
 </script>
 </body>
 </html>
+
+
